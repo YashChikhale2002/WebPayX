@@ -3,24 +3,15 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
   <!-- Earning Static start -->
   <div class="lg:col-span-12 2xl:col-span-6">
-    <div class="card h-full rounded-lg border-0">
+    <div class="card rounded-lg border-0">
       <div class="card-body p-6">
         <div class="flex items-center flex-wrap gap-2 justify-between">
-          <div class="flex-1 text-center">
-            <h6 class="mb-2 font-bold text-lg">
+          <div class="flex-1 text-center mt-4 py-2">
+            <h6 class="mb-4 font-bold text-lg">
               Last 15 days Vise Business Statistics
             </h6>
           </div>
-          <div>
-            <select
-              class="form-select form-select-sm w-auto bg-white dark:bg-neutral-700 border text-secondary-light"
-            >
-              <option>Yearly</option>
-              <option>Monthly</option>
-              <option>Weekly</option>
-              <option>Today</option>
-            </select>
-          </div>
+
         </div>
 
         <div
@@ -140,13 +131,24 @@
               </div>
             </div>
           </div>
+            
         </div>
-
-        <div id="barChart"></div>
+        <div class="flex items-center justify-end mt-6">
+            <select
+              class="form-select form-select-sm w-auto bg-white dark:bg-neutral-700 border text-secondary-light"
+            >
+              <option>Yearly</option>
+              <option>Monthly</option>
+              <option>Weekly</option>
+              <option>Today</option>
+            </select>
+          </div>
+        <div id="barChart" class="mt-16"></div>
       </div>
     </div>
   </div>
   <!-- Earning Static End -->
+
 
   <!-- Campaign Static start -->
   <div class="lg:col-span-12 2xl:col-span-6">
@@ -404,46 +406,260 @@
       <!-- Customer Overview Section -->
       <div class="lg:col-span-6 2xl:col-span-12 col-xxl-12 col-sm-6">
         <div class="card h-full rounded-lg border-0 overflow-hidden">
-          <div class="card-body p-6">
+          <div class="card-body p-4">
             <div class="flex items-center flex-wrap gap-2 justify-between">
               <h6 class="mb-2 font-bold text-lg">Customer Overview</h6>
-              <div class="">
-                <select
-                  class="form-select form-select-sm w-auto bg-white dark:bg-neutral-700 border text-secondary-light"
-                >
-                  <option>Yearly</option>
-                  <option>Monthly</option>
-                  <option>Weekly</option>
-                  <option>Today</option>
-                </select>
-              </div>
             </div>
 
-            <div class="flex flex-wrap items-center mt-4">
-              <ul class="shrink-0">
-                <li class="flex items-center gap-2 mb-7">
-                  <span class="w-3 h-3 rounded-full bg-success-600"></span>
-                  <span class="text-secondary-light text-sm font-medium"
-                    >Total: 400</span
-                  >
-                </li>
-                <li class="flex items-center gap-2 mb-7">
-                  <span class="w-3 h-3 rounded-full bg-warning-600"></span>
-                  <span class="text-secondary-light text-sm font-medium"
-                    >New: 400</span
-                  >
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-primary-600"></span>
-                  <span class="text-secondary-light text-sm font-medium"
-                    >Active: 1400</span
-                  >
-                </li>
-              </ul>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-3 gap-6"
+            >
               <div
-                id="donutChart"
-                class="grow apexcharts-tooltip-z-none title-style circle-none"
-              ></div>
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-2">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
+              <div
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-4">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
+              <div
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-4">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
+              <div
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-4">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
+              <div
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-4">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
+              <div
+                class="w-52 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <!-- Top Section -->
+                <div
+                  class="p-4 text-center border-b border-dashed border-gray-200"
+                >
+                  <p class="text-gray-500 text-sm font-medium">Retailer</p>
+                  <h2 class="text-3xl font-bold text-gray-800">100</h2>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="pb-4">
+                  <div
+                    class="flex items-center justify-between cursor-pointer hover:bg-blue-50 rounded-lg px-3 transition-colors duration-200 group"
+                  >
+                    <span
+                      class="text-blue-600 text-sm font-medium group-hover:text-blue-700"
+                      >Click to View the List</span
+                    >
+                    <div
+                      class="flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors duration-200"
+                    >
+                      <svg
+                        class="w-3 h-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- card end -->
             </div>
           </div>
         </div>
