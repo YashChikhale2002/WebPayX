@@ -1,9 +1,8 @@
-{% extends 'layout/layout.html' %} 
-{% block content %}
+{% extends 'layout/layout.html' %} {% block content %}
 
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
   <!-- Earning Static start -->
-  <div class="lg:col-span-12 2xl:col-span-8">
+  <div class="lg:col-span-12 2xl:col-span-6">
     <div class="card h-full rounded-lg border-0">
       <div class="card-body p-6">
         <div class="flex items-center flex-wrap gap-2 justify-between">
@@ -24,7 +23,9 @@
           </div>
         </div>
 
-        <div class="mt-5 gap-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 ">
+        <div
+          class="mt-5 gap-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+        >
           <div
             class="card px-4 py-2 shadow-2 rounded-lg border-gray-200 dark:border-neutral-600 h-full bg-gradient-to-l from-primary-600/10 to-bg-white"
           >
@@ -146,141 +147,256 @@
     </div>
   </div>
   <!-- Earning Static End -->
-  
+
   <!-- Campaign Static start -->
-  <div class="lg:col-span-12 2xl:col-span-4">
+  <div class="lg:col-span-12 2xl:col-span-6">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       <div class="lg:col-span-6 2xl:col-span-12 col-xxl-12 col-sm-6">
         <div class="card h-full rounded-lg border-0">
-          <div class="card-body p-6">
-            <!-- Header -->
-            <div class="flex items-center flex-wrap gap-2 justify-between mb-5">
-              <h6 class="mb-0 font-bold text-lg">My Cards</h6>
-              <a
-                href="#"
-                class="border border-primary-600 text-primary-600 hover:text-white hover:bg-primary-600 inline-flex items-center gap-2 text-sm px-3 py-2 rounded transition"
-              >
-                <iconify-icon
-                  icon="ph:plus-circle"
-                  class="icon text-lg"
-                ></iconify-icon>
-                Add Card
-              </a>
-            </div>
+          <div class="card-body p-4">
+            <div class="flex gap-6">
+              <!-- Left Side - Menu Items -->
+              <div class="w-1/2">
+                <h6 class="mb-2 font-bold text-lg text-gray-800">
+                  API Card Balance
+                </h6>
+                <div>
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >Credit Card Bill Payment</span
+                    >
+                  </div>
 
-            <!-- AUTO TRANSITION CARD SLIDER -->
-            <div class="relative h-[250px]">
-              <!-- Cards Container - No arrows needed -->
-              <div class="h-full overflow-hidden rounded-2xl">
-                <div id="cardSliderTrack" class="flex h-full transition-transform duration-500 ease-in-out">
-                  
-                  <!-- Card 1 - Blue Visa -->
-                  <div class="w-full flex-shrink-0">
-                    <div class="h-full rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                      <div class="flex flex-col justify-between h-full">
-                        <!-- Top -->
-                        <div class="flex justify-between items-start">
-                          <h3 class="text-xl font-bold">Visa Card</h3>
-                          <div class="bg-white/20 px-3 py-1 rounded text-sm font-bold">VISA</div>
-                        </div>
-                        
-                        <!-- Middle -->
-                        <div class="my-4">
-                          <p class="text-xs opacity-75 mb-2">Credit Card Number</p>
-                          <h2 class="text-2xl font-mono font-bold tracking-wider">2356 9854 3652 5612</h2>
-                        </div>
-                        
-                        <!-- Bottom -->
-                        <div class="flex justify-between">
-                          <div>
-                            <p class="text-xs opacity-75">Name</p>
-                            <p class="font-semibold">Arlene McCoy</p>
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >Money Transfer Services</span
+                    >
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >Prepaid Bill Payment</span
+                    >
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >Mobile Recharge Services</span
+                    >
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >Payment Card Services</span
+                    >
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-2 mb-1 bg-gray-100 hover:bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    <span class="text-gray-700 font-medium"
+                      >PayOut Business</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Right Side - Card Section -->
+              <div class="w-1/2">
+                <!-- AUTO TRANSITION CARD SLIDER -->
+                <div class="relative h-[250px] mt-10">
+                  <!-- Cards Container - No arrows needed -->
+                  <div class="h-full overflow-hidden rounded-2xl">
+                    <div
+                      id="cardSliderTrack"
+                      class="flex h-full transition-transform duration-500 ease-in-out"
+                    >
+                      <!-- Card 1 - Blue Visa -->
+                      <div class="w-full flex-shrink-0">
+                        <div
+                          class="h-full rounded-2xl p-4 text-white shadow-xl"
+                          style="
+                            background: linear-gradient(
+                              135deg,
+                              #667eea 0%,
+                              #764ba2 100%
+                            );
+                          "
+                        >
+                          <div class="flex flex-col justify-between h-full">
+                            <!-- Top -->
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-lg font-bold">Visa Card</h3>
+                              <div
+                                class="bg-white/20 px-2 py-1 rounded text-xs font-bold"
+                              >
+                                VISA
+                              </div>
+                            </div>
+
+                            <!-- Middle -->
+                            <div class="my-3">
+                              <p class="text-xs opacity-75 mb-2">
+                                Credit Card Number
+                              </p>
+                              <h2
+                                class="text-lg font-mono font-bold tracking-wider"
+                              >
+                                2356 9854 3652 5612
+                              </h2>
+                            </div>
+
+                            <!-- Bottom -->
+                            <div class="flex justify-between">
+                              <div>
+                                <p class="text-xs opacity-75">Name</p>
+                                <p class="font-semibold text-sm">
+                                  Arlene McCoy
+                                </p>
+                              </div>
+                              <div>
+                                <p class="text-xs opacity-75">Expires</p>
+                                <p class="font-semibold text-sm">05/26</p>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <p class="text-xs opacity-75">Expires</p>
-                            <p class="font-semibold">05/26</p>
+                        </div>
+                      </div>
+
+                      <!-- Card 2 - Dark MasterCard -->
+                      <div class="w-full flex-shrink-0">
+                        <div
+                          class="h-full rounded-2xl p-4 text-white shadow-xl"
+                          style="
+                            background: linear-gradient(
+                              135deg,
+                              #2c3e50 0%,
+                              #34495e 100%
+                            );
+                          "
+                        >
+                          <div class="flex flex-col justify-between h-full">
+                            <!-- Top -->
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-lg font-bold">Master Card</h3>
+                              <div class="flex space-x-1">
+                                <div
+                                  class="w-5 h-5 bg-red-500 rounded-full"
+                                ></div>
+                                <div
+                                  class="w-5 h-5 bg-yellow-400 rounded-full -ml-2"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <!-- Middle -->
+                            <div class="my-3">
+                              <p class="text-xs opacity-75 mb-2">
+                                Credit Card Number
+                              </p>
+                              <h2
+                                class="text-lg font-mono font-bold tracking-wider"
+                              >
+                                1234 5678 9012 3456
+                              </h2>
+                            </div>
+
+                            <!-- Bottom -->
+                            <div class="flex justify-between">
+                              <div>
+                                <p class="text-xs opacity-75">Name</p>
+                                <p class="font-semibold text-sm">John Doe</p>
+                              </div>
+                              <div>
+                                <p class="text-xs opacity-75">Expires</p>
+                                <p class="font-semibold text-sm">12/27</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Card 3 - Green Amex -->
+                      <div class="w-full flex-shrink-0">
+                        <div
+                          class="h-full rounded-2xl p-4 text-white shadow-xl"
+                          style="
+                            background: linear-gradient(
+                              135deg,
+                              #11998e 0%,
+                              #38ef7d 100%
+                            );
+                          "
+                        >
+                          <div class="flex flex-col justify-between h-full">
+                            <!-- Top -->
+                            <div class="flex justify-between items-start">
+                              <h3 class="text-lg font-bold">
+                                American Express
+                              </h3>
+                              <div
+                                class="bg-white/20 px-2 py-1 rounded text-xs font-bold"
+                              >
+                                AMEX
+                              </div>
+                            </div>
+
+                            <!-- Middle -->
+                            <div class="my-3">
+                              <p class="text-xs opacity-75 mb-2">
+                                Credit Card Number
+                              </p>
+                              <h2
+                                class="text-lg font-mono font-bold tracking-wider"
+                              >
+                                9876 5432 1098 7654
+                              </h2>
+                            </div>
+
+                            <!-- Bottom -->
+                            <div class="flex justify-between">
+                              <div>
+                                <p class="text-xs opacity-75">Name</p>
+                                <p class="font-semibold text-sm">Jane Smith</p>
+                              </div>
+                              <div>
+                                <p class="text-xs opacity-75">Expires</p>
+                                <p class="font-semibold text-sm">08/25</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <!-- Card 2 - Dark MasterCard -->
-                  <div class="w-full flex-shrink-0">
-                    <div class="h-full rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
-                      <div class="flex flex-col justify-between h-full">
-                        <!-- Top -->
-                        <div class="flex justify-between items-start">
-                          <h3 class="text-xl font-bold">Master Card</h3>
-                          <div class="flex space-x-1">
-                            <div class="w-6 h-6 bg-red-500 rounded-full"></div>
-                            <div class="w-6 h-6 bg-yellow-400 rounded-full -ml-3"></div>
-                          </div>
-                        </div>
-                        
-                        <!-- Middle -->
-                        <div class="my-4">
-                          <p class="text-xs opacity-75 mb-2">Credit Card Number</p>
-                          <h2 class="text-2xl font-mono font-bold tracking-wider">1234 5678 9012 3456</h2>
-                        </div>
-                        
-                        <!-- Bottom -->
-                        <div class="flex justify-between">
-                          <div>
-                            <p class="text-xs opacity-75">Name</p>
-                            <p class="font-semibold">John Doe</p>
-                          </div>
-                          <div>
-                            <p class="text-xs opacity-75">Expires</p>
-                            <p class="font-semibold">12/27</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card 3 - Green Amex -->
-                  <div class="w-full flex-shrink-0">
-                    <div class="h-full rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
-                      <div class="flex flex-col justify-between h-full">
-                        <!-- Top -->
-                        <div class="flex justify-between items-start">
-                          <h3 class="text-xl font-bold">American Express</h3>
-                          <div class="bg-white/20 px-3 py-1 rounded text-sm font-bold">AMEX</div>
-                        </div>
-                        
-                        <!-- Middle -->
-                        <div class="my-4">
-                          <p class="text-xs opacity-75 mb-2">Credit Card Number</p>
-                          <h2 class="text-2xl font-mono font-bold tracking-wider">9876 5432 1098 7654</h2>
-                        </div>
-                        
-                        <!-- Bottom -->
-                        <div class="flex justify-between">
-                          <div>
-                            <p class="text-xs opacity-75">Name</p>
-                            <p class="font-semibold">Jane Smith</p>
-                          </div>
-                          <div>
-                            <p class="text-xs opacity-75">Expires</p>
-                            <p class="font-semibold">08/25</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <!-- Dots -->
+                <div class="flex justify-center mt-4 space-x-2">
+                  <button
+                    class="card-dot w-3 h-3 rounded-full bg-blue-500"
+                    data-slide="0"
+                  ></button>
+                  <button
+                    class="card-dot w-3 h-3 rounded-full bg-gray-300"
+                    data-slide="1"
+                  ></button>
+                  <button
+                    class="card-dot w-3 h-3 rounded-full bg-gray-300"
+                    data-slide="2"
+                  ></button>
                 </div>
               </div>
             </div>
-
-            <!-- Dots -->
-            <div class="flex justify-center mt-4 space-x-2">
-              <button class="card-dot w-3 h-3 rounded-full bg-blue-500" data-slide="0"></button>
-              <button class="card-dot w-3 h-3 rounded-full bg-gray-300" data-slide="1"></button>
-              <button class="card-dot w-3 h-3 rounded-full bg-gray-300" data-slide="2"></button>
-            </div>
-            
           </div>
         </div>
       </div>
@@ -307,15 +423,21 @@
               <ul class="shrink-0">
                 <li class="flex items-center gap-2 mb-7">
                   <span class="w-3 h-3 rounded-full bg-success-600"></span>
-                  <span class="text-secondary-light text-sm font-medium">Total: 400</span>
+                  <span class="text-secondary-light text-sm font-medium"
+                    >Total: 400</span
+                  >
                 </li>
                 <li class="flex items-center gap-2 mb-7">
                   <span class="w-3 h-3 rounded-full bg-warning-600"></span>
-                  <span class="text-secondary-light text-sm font-medium">New: 400</span>
+                  <span class="text-secondary-light text-sm font-medium"
+                    >New: 400</span
+                  >
                 </li>
                 <li class="flex items-center gap-2">
                   <span class="w-3 h-3 rounded-full bg-primary-600"></span>
-                  <span class="text-secondary-light text-sm font-medium">Active: 1400</span>
+                  <span class="text-secondary-light text-sm font-medium"
+                    >Active: 1400</span
+                  >
                 </li>
               </ul>
               <div
@@ -332,146 +454,151 @@
 
 <!-- AUTO TRANSITION SLIDER JAVASCRIPT -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Starting Auto Card Slider...');
-    
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("Starting Auto Card Slider...");
+
     // Get elements
-    const track = document.getElementById('cardSliderTrack');
-    const dots = document.querySelectorAll('.card-dot');
-    
+    const track = document.getElementById("cardSliderTrack");
+    const dots = document.querySelectorAll(".card-dot");
+
     // Check if elements exist
     if (!track || !dots.length) {
-        console.error('Slider elements not found!');
-        return;
+      console.error("Slider elements not found!");
+      return;
     }
-    
-    console.log('All elements found, initializing auto slider...');
-    
+
+    console.log("All elements found, initializing auto slider...");
+
     // Slider state
     let currentSlide = 0;
     const totalSlides = 3;
     let autoSlideInterval;
     let isAnimating = false;
-    
+
     // Update slider position
     function updateSlider() {
-        if (isAnimating) return;
-        isAnimating = true;
-        
-        const translateX = -(currentSlide * 100);
-        track.style.transform = `translateX(${translateX}%)`;
-        console.log(`Auto moving to slide ${currentSlide}, translateX: ${translateX}%`);
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            if (index === currentSlide) {
-                dot.classList.remove('bg-gray-300');
-                dot.classList.add('bg-blue-500');
-            } else {
-                dot.classList.remove('bg-blue-500');
-                dot.classList.add('bg-gray-300');
-            }
-        });
-        
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const translateX = -(currentSlide * 100);
+      track.style.transform = `translateX(${translateX}%)`;
+      console.log(
+        `Auto moving to slide ${currentSlide}, translateX: ${translateX}%`
+      );
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.remove("bg-gray-300");
+          dot.classList.add("bg-blue-500");
+        } else {
+          dot.classList.remove("bg-blue-500");
+          dot.classList.add("bg-gray-300");
+        }
+      });
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 500);
     }
-    
+
     // Next slide (auto)
     function nextSlide() {
-        if (isAnimating) return;
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-        console.log('Auto transition to slide:', currentSlide);
+      if (isAnimating) return;
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+      console.log("Auto transition to slide:", currentSlide);
     }
-    
+
     // Start auto slide
     function startAutoSlide() {
-        autoSlideInterval = setInterval(() => {
-            nextSlide();
-        }, 3000); // Auto transition every 3 seconds
-        console.log('Auto slide started - transitions every 3 seconds');
+      autoSlideInterval = setInterval(() => {
+        nextSlide();
+      }, 3000); // Auto transition every 3 seconds
+      console.log("Auto slide started - transitions every 3 seconds");
     }
-    
+
     // Stop auto slide
     function stopAutoSlide() {
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = null;
-            console.log('Auto slide stopped');
-        }
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+        console.log("Auto slide stopped");
+      }
     }
-    
+
     // Restart auto slide
     function restartAutoSlide() {
-        stopAutoSlide();
-        setTimeout(() => {
-            startAutoSlide();
-        }, 5000); // Resume after 5 seconds
+      stopAutoSlide();
+      setTimeout(() => {
+        startAutoSlide();
+      }, 5000); // Resume after 5 seconds
     }
-    
+
     // Dot clicks (optional manual control)
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (isAnimating) return;
-            
-            currentSlide = index;
-            updateSlider();
-            console.log('Manual dot clicked, slide:', currentSlide);
-            
-            // Temporarily stop auto slide, then restart
-            restartAutoSlide();
-        });
+      dot.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (isAnimating) return;
+
+        currentSlide = index;
+        updateSlider();
+        console.log("Manual dot clicked, slide:", currentSlide);
+
+        // Temporarily stop auto slide, then restart
+        restartAutoSlide();
+      });
     });
-    
+
     // Touch support (optional manual control)
     let startX = 0;
-    track.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        stopAutoSlide(); // Stop auto slide on touch
+    track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      stopAutoSlide(); // Stop auto slide on touch
     });
-    
-    track.addEventListener('touchend', (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                // Swipe left - next slide
-                currentSlide = (currentSlide + 1) % totalSlides;
-            } else {
-                // Swipe right - previous slide
-                currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
-            }
-            updateSlider();
-            console.log('Touch swipe to slide:', currentSlide);
+
+    track.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          // Swipe left - next slide
+          currentSlide = (currentSlide + 1) % totalSlides;
+        } else {
+          // Swipe right - previous slide
+          currentSlide =
+            currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
         }
-        
-        // Restart auto slide after touch
-        restartAutoSlide();
+        updateSlider();
+        console.log("Touch swipe to slide:", currentSlide);
+      }
+
+      // Restart auto slide after touch
+      restartAutoSlide();
     });
-    
+
     // Pause auto slide on hover
-    track.addEventListener('mouseenter', () => {
-        stopAutoSlide();
-        console.log('Auto slide paused on hover');
+    track.addEventListener("mouseenter", () => {
+      stopAutoSlide();
+      console.log("Auto slide paused on hover");
     });
-    
+
     // Resume auto slide when mouse leaves
-    track.addEventListener('mouseleave', () => {
-        startAutoSlide();
-        console.log('Auto slide resumed');
+    track.addEventListener("mouseleave", () => {
+      startAutoSlide();
+      console.log("Auto slide resumed");
     });
-    
+
     // Initialize
     updateSlider();
     startAutoSlide();
-    
-    console.log('Auto Card Slider initialized successfully!');
-    console.log('Features: Auto transition (3s), Pause on hover, Touch control, Dot control');
-});
+
+    console.log("Auto Card Slider initialized successfully!");
+    console.log(
+      "Features: Auto transition (3s), Pause on hover, Touch control, Dot control"
+    );
+  });
 </script>
 
 {% endblock %}
