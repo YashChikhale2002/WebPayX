@@ -91,6 +91,257 @@
                     </li>
                 </ul>
             </li>
+             <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:account-group" class="menu-icon"></iconify-icon>
+                    <span>Member Management</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceList') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> WL-API Partner</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoicePreview') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> White Label Partner</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceAdd') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Master Distributor</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Distributor</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Retailer</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Registered Member</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Employee Users</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:finance" class="menu-icon"></iconify-icon>
+                    <span>Fund Management</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceList') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Top-up Request</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoicePreview') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Top-up Request Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceAdd') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Direct Wallet Top-Up Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Fund Hold Report</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:alert-circle-outline" class="menu-icon"></iconify-icon>
+                    <span>Complaint & Grievances</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceList') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> New Complaint Request</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoicePreview') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Complaint Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceAdd') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Create Ticket Template</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('invoice.invoiceEdit') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Role Base Escalation Report</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:percent-outline" class="menu-icon"></iconify-icon>
+                    <span>Commission Manager</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Create New Package</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Commission List
+</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.imageGenerator') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Bulk Commission Planner</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.voiceGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Commission Mark-Up Update</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Partner Vise Earning Reports</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-cyan-600 w-auto"></i> Commission Change History</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:cog-outline" class="menu-icon"></iconify-icon>
+                    <span>System Control</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> API Service Downtime</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Agent Fund Downtime</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.imageGenerator') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Payout Downtime</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.voiceGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Bulk Package Update</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> User Portal Accessibility</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-cyan-600 w-auto"></i>Login History (Web-App)</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-orange-400 w-auto"></i> Update Member Trxn. Limit</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-orange-600 w-auto"></i>Location IP Blocker</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Platform Color Management</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i>API Switching Functions</a>
+                    </li>
+                </ul>
+            </li>
+             <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:api" class="menu-icon"></iconify-icon>
+                    <span>API Service Manager</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> API Logs</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Webhook Logs</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.imageGenerator') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i>API Transaction Checker</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.voiceGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> App Configuration Features</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Set Service Charges</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-yellow-400 w-auto"></i>SMS Logs</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-orange-600 w-auto"></i> API Switcher</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-cyan-600 w-auto"></i> White Label API Manager</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> WL - API Transaction Checker</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:file-chart-outline" class="menu-icon"></iconify-icon>
+                    <span>Transaction Reports</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Collection Report (PG)</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Bill Payment Reports</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.imageGenerator') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i> Mobile Recharge Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.voiceGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Money Transfer Report
+</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> DTH Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>Commission Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> TDS Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-info w-auto"></i>GST Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> TDS Report</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>User Wise Ledger Reports</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i>System Update Reports</a>
+                    </li>
+                </ul>
+            </li>
+             <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:bullhorn-outline" class="menu-icon"></iconify-icon>
+                    <span>Announcement Update</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> News Notifications</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i>Helpdesk Update</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.imageGenerator') }}"><i class="ri-circle-fill circle-icon text-info-600 w-auto"></i>User wise Announcement</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.voiceGenerator') }}"><i class="ri-circle-fill circle-icon text-danger-600 w-auto"></i> Service wise Announcement</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-success-600 w-auto"></i> Support Details Updates</a>
+                    </li>
+                     <li>
+                        <a href="{{ url_for('aiapplication.videoGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Company Logo Updates</a>
+                    </li>
+                </ul>
+            </li>
+             <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="mdi:star-outline" class="menu-icon"></iconify-icon>
+                    <span>Premium Products</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ url_for('aiapplication.textGenerator') }}"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> invoicing</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('aiapplication.codeGenerator') }}"><i class="ri-circle-fill circle-icon text-warning-600 w-auto"></i> Reconciliation</a>
+                    </li>
+                    </ul>
+            </li>
             <li class="dropdown">
                 <a href="javascript:void(0)">
                     <iconify-icon icon="hugeicons:ai-brain-03" class="menu-icon"></iconify-icon>
@@ -190,7 +441,7 @@
                         <a href="{{ url_for('componentspage.calendar') }}"><i class="ri-circle-fill circle-icon text-yellow-400 w-auto"></i> Calendar</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('componentspage.radio') }}"><i class="ri-circle-fill circle-icon text-orange-500 w-auto"></i> Radio</a>
+                        <a href="{{ url_for('componentspage.radio') }}"><i class="ri-circle-fill circle-icon text-yellow-400 w-auto"></i> Radio</a>
                     </li>
                     <li>
                         <a href="{{ url_for('componentspage.switch') }}"><i class="ri-circle-fill circle-icon text-pink-600 w-auto"></i> Switch</a>
