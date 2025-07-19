@@ -1,140 +1,1747 @@
-{% extends 'layout/layout.html' %}
+{% extends 'layout/layout.html' %} {% block content %}
 
-{% block content %}
-
-    <div class="card h-full p-0 rounded-xl border-0">
-        <div class="card-body p-6">
-            <div class="grid grid-cols-12 gap-5">
-                <div class="2xl:col-span-6 col-span-12">
-                    <div class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden">
-                        <div class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 bg-white dark:bg-neutral-700 rounded-full flex justify-center items-center">
-                                    <img src="{{ url_for('static', filename='assets/images/payment/payment-gateway1.png') }}" alt="" class="">
-                                </span>
-                                <span class="text-lg font-semibold text-neutral-600 dark:text-neutral-200">Paypal</span>
-                            </div>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" checked>
-                                <span class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-neutral-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></span>
-                            </label>
-                        </div>
-                        <div class="card-body p-6">
-                            <div class="grid grid-cols-12 gap-5">
-                                <div class="sm:col-span-6 col-span-12">
-                                    <span class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Environment <span class="text-danger-600">*</span></span>
-                                    <div class="flex items-center gap-3">
-                                        <div class="flex items-center gap-3 font-medium text-lg">
-                                            <div class="form-check style-check flex items-center">
-                                                <input class="form-check-input rounded border border-neutral-400" type="checkbox" name="checkbox" id="sandbox" checked>
-                                            </div>
-                                            <label for="sandbox" class="inline-block font-medium text-lg text-neutral-600 dark:text-neutral-200 mb-0">Sandbox</label>
-                                        </div>
-                                        <div class="flex items-center gap-3 font-medium text-lg">
-                                            <div class="form-check style-check flex items-center">
-                                                <input class="form-check-input rounded border border-neutral-400" type="checkbox" name="checkbox" id="Production">
-                                            </div>
-                                            <label for="Production" class="inline-block font-medium text-lg text-neutral-600 dark:text-neutral-200 mb-0">Production</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="currency" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Currency <span class="text-danger-600">*</span></label>
-                                    <select class="form-control rounded-lg form-select" id="currency">
-                                        <option selected disabled>USD</option>
-                                        <option>TK</option>
-                                        <option>Rupee</option>
-                                    </select>
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="secretKey" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Secret Key <span class="text-danger-600">*</span></label>
-                                    <input type="text" class="form-control rounded-lg" id="secretKey" placeholder="Secret Key" value="EGtgNkjt3I5lkhEEzicdot8gVH_PcFiKxx6ZBiXpVrp4QLDYcVQQMLX6MMG_fkS9_H0bwmZzBovb4jLP">
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="publicKey" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Publics Key<span class="text-danger-600">*</span></label>
-                                    <input type="text" class="form-control rounded-lg" id="publicKey" placeholder="Publics Key" value="AcRx7vvy79nbNxBemacGKmnnRe_CtxkItyspBS_eeMIPREwfCEIfPg1uX-bdqPrS_ZFGocxEH_SJRrIJ">
-                                </div>
-
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="logo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Logo <span class="text-danger-600">*</span></label>
-                                    <input type="file" class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg" id="logo">
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="logo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white"><span class="visibility-hidden">Save</span></label>
-                                    <button type="submit" class="btn btn-primary border border-primary-600 text-base px-6 py-2 rounded-lg w-full justify-center">
-                                        Save Change
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="2xl:col-span-6 col-span-12">
-                    <div class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden">
-                        <div class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 bg-white dark:bg-neutral-700 rounded-full flex justify-center items-center">
-                                    <img src="{{ url_for('static', filename='assets/images/payment/payment-gateway2.png') }}" alt="" class="">
-                                </span>
-                                <span class="text-lg font-semibold text-neutral-600 dark:text-neutral-200">RazorPay</span>
-                            </div>
-                            <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" checked>
-                                <span class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-neutral-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary-600"></span>
-                            </label>
-                        </div>
-                        <div class="card-body p-6">
-                            <div class="grid grid-cols-12 gap-5">
-                                <div class="sm:col-span-6 col-span-12">
-                                    <span class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Environment <span class="text-danger-600">*</span></span>
-                                    <div class="flex items-center gap-3">
-                                        <div class="flex items-center gap-3 font-medium text-lg">
-                                            <div class="form-check style-check flex items-center">
-                                                <input class="form-check-input rounded border border-neutral-400" type="checkbox" name="checkbox" id="sandbox2" checked>
-                                            </div>
-                                            <label for="sandbox2" class="inline-block font-medium text-lg text-neutral-600 dark:text-neutral-200 mb-0">Sandbox</label>
-                                        </div>
-                                        <div class="flex items-center gap-3 font-medium text-lg">
-                                            <div class="form-check style-check flex items-center">
-                                                <input class="form-check-input rounded border border-neutral-400" type="checkbox" name="checkbox" id="Production2">
-                                            </div>
-                                            <label for="Production2" class="inline-block font-medium text-lg text-neutral-600 dark:text-neutral-200 mb-0">Production</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="currencyTwo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Currency <span class="text-danger-600">*</span></label>
-                                    <select class="form-control rounded-lg form-select" id="currencyTwo">
-                                        <option selected disabled>USD</option>
-                                        <option>TK</option>
-                                        <option>Rupee</option>
-                                    </select>
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="secretKeyTwo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Secret Key <span class="text-danger-600">*</span></label>
-                                    <input type="text" class="form-control rounded-lg" id="secretKeyTwo" placeholder="Secret Key" value="EGtgNkjt3I5lkhEEzicdot8gVH_PcFiKxx6ZBiXpVrp4QLDYcVQQMLX6MMG_fkS9_H0bwmZzBovb4jLP">
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="publicKeyTwo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Publics Key<span class="text-danger-600">*</span></label>
-                                    <input type="text" class="form-control rounded-lg" id="publicKeyTwo" placeholder="Publics Key" value="AcRx7vvy79nbNxBemacGKmnnRe_CtxkItyspBS_eeMIPREwfCEIfPg1uX-bdqPrS_ZFGocxEH_SJRrIJ">
-                                </div>
-
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label for="logoTwo" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Logo <span class="text-danger-600">*</span></label>
-                                    <input type="file" class="border border-neutral-200 dark:border-neutral-600 w-full rounded-lg" id="logoTwo">
-                                </div>
-                                <div class="sm:col-span-6 col-span-12">
-                                    <label class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white"><span class="visibility-hidden">Save</span></label>
-                                    <button type="submit" class="btn btn-primary border border-primary-600 text-base px-6 py-2 rounded-lg w-full justify-center">
-                                        Save Change
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="card h-full p-0 rounded-xl border-0">
+  <div class="card-body p-6">
+    <div class="grid grid-cols-12 gap-5">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Service Control</span
+              >
             </div>
-        </div>
-    </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="payment-gateway"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Payment Gateway
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="payment-gateway"
+                      checked
+                    />
+                  </div>
+                </div>
 
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-transfer"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Bank Transfer Service
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-transfer"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-settlement"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    05. Bank Settlement
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-settlement"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="cc-bill"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. CC Bill Payment
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="cc-bill"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="mobile-recharge"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Mobile Recharge
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="mobile-recharge"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="aeps-services"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    06. Aeps Services
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="aeps-services"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Transactional Report
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="payment-gateway2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Payment Gateway
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="payment-gateway2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-transfer2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Bank Transfer Service
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-transfer2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-settlement2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    05. Bank Settlement
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-settlement2"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="cc-bill2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. CC Bill Payment
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="cc-bill2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="mobile-recharge2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Mobile Recharge
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="mobile-recharge2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="aeps-services2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    06. Aeps Services
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="aeps-services2"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Wallet Fund Controls</span
+              >
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Top-up Request
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-request"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-account"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Top-up A/c Update
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-account"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Top-up Request Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Bank Account Update
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="self-bank"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Self Bank - Top-Up
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="self-bank"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="settlement-bank"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Settlement Bank A/c
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="settlement-bank"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="agent-topup"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Agent Top-Up Bank
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="agent-topup"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-update-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Bank Update Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-update-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Support Ticket Manager
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Raise New Request
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="request-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Request Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="request-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Profile Setting
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="reset-password"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Reset Password
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="reset-password"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="support-detail"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Support Detail
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="support-detail"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="reset-pin"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Reset T-Pin / M-Pin
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="reset-pin"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-6">
+      <button
+        type="button"
+        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="card h-full p-0 rounded-xl border-0 mt-6">
+  <div class="card-body p-6">
+    <div class="grid grid-cols-12 gap-5">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Service Control</span
+              >
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="payment-gateway"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Payment Gateway
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="payment-gateway"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-transfer"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Bank Transfer Service
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-transfer"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-settlement"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    05. Bank Settlement
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-settlement"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="cc-bill"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. CC Bill Payment
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="cc-bill"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="mobile-recharge"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Mobile Recharge
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="mobile-recharge"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="aeps-services"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    06. Aeps Services
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="aeps-services"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Transactional Report
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="payment-gateway2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Payment Gateway
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="payment-gateway2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-transfer2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Bank Transfer Service
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-transfer2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-settlement2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    05. Bank Settlement
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-settlement2"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="cc-bill2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. CC Bill Payment
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="cc-bill2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="mobile-recharge2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Mobile Recharge
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="mobile-recharge2"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="aeps-services2"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    06. Aeps Services
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="aeps-services2"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Wallet Fund Controls</span
+              >
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Top-up Request
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-request"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-account"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Top-up A/c Update
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-account"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="topup-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Top-up Request Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="topup-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Bank Account Update
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="self-bank"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Self Bank - Top-Up
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="self-bank"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="settlement-bank"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Settlement Bank A/c
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="settlement-bank"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="agent-topup"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Agent Top-Up Bank
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="agent-topup"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="bank-update-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Bank Update Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="bank-update-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Support Ticket Manager
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Raise New Request
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Member Complaint Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="request-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Request Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="request-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Profile Setting
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="reset-password"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Reset Password
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="reset-password"
+                      checked
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <label
+                    for="support-detail"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    03. Support Detail
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="support-detail"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="reset-pin"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    02. Reset T-Pin / M-Pin
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="reset-pin"
+                      checked
+                    />
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <label
+                    for="reset-pin"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    04. Member M-PIN Reset
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="reset-pin"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Member Accessibility
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   01. Create Retailer
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   02. Member Profile Update
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-4 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   03.Member Password Reset
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   04. Member Fund Dr-Cr.
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   05. Member Fund Hold
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   06. Create Distributor
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   07. Wallet Top-up Request
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   08. Mapping Manager
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   09. Bulk Mapping Manager
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Member Reporting Accessibility
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   01. Payment Gateway
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   02. CC Bill Payment
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   03. Bank Settlement
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   04. Fund Dr-Cr. Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   05. Fund Hold Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-4 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   06. Money Transfer Service
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   07. Mobile Recharge
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                  08. Top-up Request Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-4 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   09. Mapping Manager Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   10. Bulk Mapping Report
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-5 mt-6">
+      <div class="2xl:col-span-6 col-span-12">
+        <div
+          class="card rounded-xl shadow-none border-neutral-200 dark:border-neutral-600 overflow-hidden"
+        >
+          <div
+            class="card-header bg-neutral-100 border-b border-neutral-200 dark:border-neutral-600 dark:bg-dark-2 py-4 px-6 flex items-center flex-wrap gap-3 justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="text-lg font-semibold text-neutral-600 dark:text-neutral-200"
+                >Commission Planner
+              </span>
+            </div>
+          </div>
+          <div class="card-body p-6">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Left Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="raise-request"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                    01. Create Package
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="raise-request"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="request-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   02. Commission List
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="request-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="request-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   03. Commission Mapping
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="request-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column -->
+              <div class="flex flex-col gap-5">
+                <div class="flex items-center gap-3">
+                  <label
+                    for="request-report"
+                    class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left"
+                  >
+                   04. Markup Price
+                  </label>
+                  <div class="form-check style-check flex items-center">
+                    <input
+                      class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                      type="checkbox"
+                      name="checkbox"
+                      id="request-report"
+                      checked
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-6">
+      <button
+        type="button"
+        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>
 {% endblock %}
