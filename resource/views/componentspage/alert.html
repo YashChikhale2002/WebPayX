@@ -1,332 +1,1052 @@
-{% extends 'layout/layout.html' %}
+<!-- templates/table-basic.html -->
+{% extends 'layout/layout.html' %} {% block content %}
 
-{% block custom_script %}
-            <script>
-                        $(".remove-button").on("click", function() {
-                            $(this).closest(".alert").addClass("hidden")
-                        });
-                </script>
-    {% endblock %}
+<style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-{% block content %}
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Default Alerts</h6>
-                </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-primary-50 dark:bg-primary-600/25 text-primary-600 dark:text-primary-400 border-primary-50 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Primary alert
-                        <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-purple bg-purple-100 dark:bg-purple-600/25 text-purple-600 dark:text-purple-400 border-purple-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Secondary alert
-                        <button class="remove-button dark:text-purple-400 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-warning bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 border-warning-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Warning alert
-                        <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-info bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 border-info-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Info alert
-                        <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-danger bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 border-danger-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Danger alert
-                        <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
+<div class="card border-0 over mb-2">
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
+        <div class="flex-shrink-0">
+            <label for="fromDate" class="form-label">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label for="toDate" class="form-label">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Select Distributor</label>
+            <div>
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor
+                                1</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor
+                                2</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Outline Alerts</h6>
-                </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-transparent text-primary-600 border border-primary-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Primary alert
-                        <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-purple bg-transparent dark:text-purple-400 border border-purple-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Secondary alert
-                        <button class="remove-button dark:text-purple-400 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-warning bg-transparent text-warning-600 border border-warning-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Warning alert
-                        <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-info bg-transparent text-info-600 border border-info-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Info alert
-                        <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-danger bg-transparent text-danger-600 border border-danger-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        This is a Danger alert
-                        <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-span-12">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Solid Alerts</h6>
-                </div>
-                <div class="card-body p-6">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                        <div class="col-span-1 lg:col-span-6">
-                            <div class="flex flex-col gap-4">
-                                <div class="alert alert-primary bg-primary-600 text-white border-primary-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Primary alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                                <div class="alert alert-success bg-success-600 text-white border-success-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Success alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                                <div class="alert alert-info bg-info-600 text-white border-info-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Info alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-span-1 lg:col-span-6">
-                            <div class="flex flex-col gap-4">
-                                <div class="alert alert-purple bg-purple-600 text-white border-purple-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Secondary alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                                <div class="alert alert-warning bg-warning-600 text-white border-warning-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Warning alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                                <div class="alert alert-danger bg-danger-600 text-white border-danger-600 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                                    This is a Danger alert
-                                    <button class="remove-button text-white text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Select Status</label>
+            <div>
+                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="statusDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Outline Alerts</h6>
-                </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-primary-100 dark:bg-primary-600/25 text-primary-600 dark:text-primary-400 border-primary-50 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:emoji-line" class="icon text-xl"></iconify-icon>
-                            This is a Primary alert
-                        </div>
-                        <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-purple bg-purple-100 dark:bg-purple-600/25 text-purple-600 dark:text-purple-400 border-purple-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:emoji-line" class="icon text-xl"></iconify-icon>
-                            This is a Secondary alert
-                        </div>
-                        <button class="remove-button text-purple-600 dark:text-purple-400 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-success bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 border-success-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="akar-icons:double-check" class="icon text-xl"></iconify-icon>
-                            This is a Success alert
-                        </div>
-                        <button class="remove-button text-success-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-warning bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 border-warning-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mdi:alert-circle-outline" class="icon text-xl"></iconify-icon>
-                            This is a Warning alert
-                        </div>
-                        <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-info bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 border-info-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="ci:link" class="icon text-xl"></iconify-icon>
-                            This is a Info alert
-                        </div>
-                        <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-danger bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 border-danger-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:delete-2-line" class="icon text-xl"></iconify-icon>
-                            This is a Danger alert
-                        </div>
-                        <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">KYC Status</label>
+            <div>
+                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="kycDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Left Border Alerts</h6>
-                </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-primary-100 dark:bg-primary-600/25 text-primary-600 dark:text-primary-400 border-start-width-4-px border-l-[3px] border-neutral-200 dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:emoji-line" class="icon text-xl"></iconify-icon>
-                            This is a Primary alert
-                        </div>
-                        <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-purple bg-purple-100 dark:bg-purple-600/25 text-purple-600 dark:text-purple-400 border-purple-600 border-start-width-4-px border-l-[3px] dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:emoji-line" class="icon text-xl"></iconify-icon>
-                            This is a Secondary alert
-                        </div>
-                        <button class="remove-button dark:text-purple-400 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-success bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 border-success-600 border-start-width-4-px border-l-[3px] dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="akar-icons:double-check" class="icon text-xl"></iconify-icon>
-                            This is a Success alert
-                        </div>
-                        <button class="remove-button text-success-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-warning bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 border-warning-600 border-start-width-4-px border-l-[3px] dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mdi:alert-circle-outline" class="icon text-xl"></iconify-icon>
-                            This is a Warning alert
-                        </div>
-                        <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-info bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 border-info-600 border-start-width-4-px border-l-[3px] dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="ci:link" class="icon text-xl"></iconify-icon>
-                            This is a Info alert
-                        </div>
-                        <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                    </div>
-                    <div class="alert alert-danger bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 border-danger-600 border-start-width-4-px border-l-[3px] dark:border-neutral-600 px-6 py-[13px] mb-0 font-semibold text-lg rounded flex items-center justify-between" role="alert">
-                        <div class="flex items-center gap-2">
-                            <iconify-icon icon="mingcute:delete-2-line" class="icon text-xl"></iconify-icon>
-                            This is a Danger alert
-                        </div>
-                        <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+
+        <div class="flex flex-shrink-0 gap-2">
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Bulk Mapping
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Create Agent
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-12">
+    <div class="col-span-12">
+        <div class="card border-0">
+            <div class="card-header flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <h6>Create Retailer</h6>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Default Alerts</h6>
+            <div class="card-body">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table bordered-table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div class="form-check style-check flex items-center gap-2">
+                                        <label class="form-check-label" for="checkAll">
+                                            Sr. No
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Agent ID</th>
+                                <th scope="col">DS Name</th>
+                                <th scope="col">Wallet Balance</th>
+                                <th scope="col">Hold Amount</th>
+                                <th scope="col">Earning</th>
+                                <th scope="col">Balance Amt</th>
+                                <th scope="col">State Name</th>
+                                <th scope="col">District Name</th>
+                                <th scope="col">KYC Status</th>
+                                <th scope="col">Commission Plan</th>
+                                <th scope="col">Actions</th>
+                                <th scope="col">Fund Dr. - Cr</th>
+                                <th scope="col">Permission</th>
+                                <th scope="col">View Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" class="text-primary-600">25 Jan 2025
+                                    </a>
+                                </td>
+
+                                <td>#696589</td>
+                                <td>Abhishek Parate</td>
+                                <td>1000.00</td>
+
+                                <td>200.00</td>
+
+                                <td>10000.00</td>
+                                <td>200</td>
+                                <td>Maharastra</td>
+                                <td>Nagpur</td>
+                                <td>
+                                    <!-- Dropdown Start -->
+                                    <div class="">
+                                        <button data-dropdown-toggle="dev" data-dropdown-placement="bottom"
+                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                                            type="button">
+                                            Select
+                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                            </svg>
+                                        </button>
+                                        <!-- Dropdown menu -->
+                                        <div id="dev"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Dropdown End -->
+                                </td>
+                                <td>
+                                    <span
+                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
+                                        Department</span>
+                                </td>
+
+                                <td>
+                                    <!-- Dropdown Start -->
+                                    <div class="">
+                                        <button data-dropdown-toggle="outlineActionPill"
+                                            data-dropdown-placement="bottom"
+                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                                            type="button">
+                                            Select
+                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                            </svg>
+                                        </button>
+                                        <!-- Dropdown menu -->
+                                        <div id="outlineActionPill"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Dropdown End -->
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
+                                </td>
+                                <td>
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full px-6 py-1.5">
+                                        Primary
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-primary-100 dark:bg-primary-600/25 text-primary-600 dark:text-primary-400 border-primary-50 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-center justify-between text-lg">
-                            This is a Primary alert
-                            <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                        <p class="font-medium text-primary-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                    </div>
-                    <div class="alert alert-success bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 border-success-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-center justify-between text-lg">
-                            This is a Success alert
-                            <button class="remove-button text-success-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                        <p class="font-medium text-success-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                    </div>
-                    <div class="alert alert-warning bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 border-warning-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-center justify-between text-lg">
-                            This is a Warning alert
-                            <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                        <p class="font-medium text-warning-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                    </div>
-                    <div class="alert alert-info bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 border-info-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-center justify-between text-lg">
-                            This is a Info alert
-                            <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                        <p class="font-medium text-info-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                    </div>
-                    <div class="alert alert-danger bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 border-danger-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-center justify-between text-lg">
-                            This is a Danger alert
-                            <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                        <p class="font-medium text-danger-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                    </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
+                    <span>Showing 1 to 10 of 12 entries</span>
+                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
+                        <li class="page-item">
+                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
+                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
+                                    class="text-xl"></iconify-icon></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
+                                href="javascript:void(0)">
+                                <iconify-icon icon="ep:d-arrow-right" class="text-xl"></iconify-icon>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-1 lg:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Default Alerts</h6>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+    <div class="grid grid-cols-6">
+        <div class="col-span-6">
+            <div class="grid grid-cols-12 gap-5">
+                <div class="col-span-12">
+                    <div class="card border-0">
+                        <div class="card-header">
+                            <h5 class="text-lg font-semibold mb-0">User Profile Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <form class="grid grid-cols-12 gap-4">
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Contact Number</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="text" name="#0" class="form-control" " required>
                 </div>
-                <div class="card-body p-6 flex flex-col gap-4">
-                    <div class="alert alert-primary bg-primary-100 dark:bg-primary-600/25 text-primary-600 dark:text-primary-400 border-primary-50 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-start justify-between text-lg">
-                            <div class="flex items-start gap-2">
-                                <iconify-icon icon="mingcute:emoji-line" class="icon text-xl mt-1.5 shrink-0"></iconify-icon>
-                                <div>
-                                    This is a Primary alert
-                                    <p class="font-medium text-primary-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                <div class=" md:col-span-6 col-span-12">
+                                    <label class="form-label">D.O.B</label>
+                                    <input type="text" name="#0" class="form-control" required />
                                 </div>
-                            </div>
-                            <button class="remove-button text-primary-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                    </div>
-                    <div class="alert alert-success bg-success-100 dark:bg-success-600/25 text-success-600 dark:text-success-400 border-success-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-start justify-between text-lg">
-                            <div class="flex items-start gap-2">
-                                <iconify-icon icon="bi:patch-check" class="icon text-xl mt-1.5 shrink-0"></iconify-icon>
-                                <div>
-                                    This is a Success alert
-                                    <p class="font-medium text-success-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">State Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
                                 </div>
-                            </div>
-                            <button class="remove-button text-success-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                    </div>
-                    <div class="alert alert-warning bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 border-warning-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-start justify-between text-lg">
-                            <div class="flex items-start gap-2">
-                                <iconify-icon icon="mdi:clock-outline" class="icon text-xl mt-1.5 shrink-0"></iconify-icon>
-                                <div>
-                                    This is a Warning alert
-                                    <p class="font-medium text-warning-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">District Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
                                 </div>
-                            </div>
-                            <button class="remove-button text-warning-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                    </div>
-                    <div class="alert alert-info bg-info-100 dark:bg-info-600/25 text-info-600 dark:text-info-400 border-info-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-start justify-between text-lg">
-                            <div class="flex items-start gap-2">
-                                <iconify-icon icon="mynaui:check-octagon" class="icon text-xl mt-1.5 shrink-0"></iconify-icon>
-                                <div>
-                                    This is a Info alert
-                                    <p class="font-medium text-info-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">City Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
                                 </div>
-                            </div>
-                            <button class="remove-button text-info-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
-                        </div>
-                    </div>
-                    <div class="alert alert-danger bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 border-danger-100 px-6 py-[11px] mb-0 font-semibold text-lg rounded-lg" role="alert">
-                        <div class="flex items-start justify-between text-lg">
-                            <div class="flex items-start gap-2">
-                                <iconify-icon icon="mingcute:delete-2-line" class="icon text-xl mt-1.5 shrink-0"></iconify-icon>
-                                <div>
-                                    This is a Danger alert
-                                    <p class="font-medium text-danger-600 text-sm mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Village Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
                                 </div>
-                            </div>
-                            <button class="remove-button text-danger-600 text-2xl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Pin Code</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Business Name</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="form-label">Business Address</label>
+                                    <input type="text" name="#0" class="form-control" required />
+                                </div>
+
+                                <div class="md:col-span-6 col-span-12 flex items-end">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                        Primary
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="grid grid-cols-6">
+        <div class="flex flex-col gap-6">
+            <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+                <div class="card-header p-4">
+                    <h6 class="card-title mb-0 text-base font-semibold">
+                        Commission Plan
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <form action="#" class="space-y-4">
+                        <div class="flex items-end gap-4">
+                            <div class="flex-1">
+                                <label for="commissionPlan"
+                                    class="text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2 block">Select
+                                    Plan</label>
+                                <select id="commissionPlan"
+                                    class="form-select w-full rounded-lg border-neutral-300 dark:border-neutral-600 dark:bg-neutral-800">
+                                    <option>01:- Default Plan</option>
+                                    <option selected>02:- Individual Plan Offer</option>
+                                </select>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="submit"
+                                    class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-2">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+                <div class="card-header p-4">
+                    <h6 class="card-title mb-0 text-base font-semibold">
+                        Fund Manager Options
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <div class="border border-neutral-200 dark:border-neutral-600 rounded-lg p-4">
+                        <div class="flex items-end justify-between gap-4">
+                            <div>
+                                <label class="block text-xs text-neutral-500 mb-1">Wallet Fund</label>
+                                <div class="bg-neutral-100 dark:bg-neutral-700 rounded-lg py-2 px-4">
+                                    <p class="font-semibold text-neutral-800 dark:text-white">
+                                        Rs. 75,000
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-neutral-500 mb-1">Unsettled Amount</label>
+                                <div class="bg-neutral-100 dark:bg-neutral-700 rounded-lg py-2 px-4">
+                                    <p class="font-semibold text-neutral-800 dark:text-white">
+                                        Rs. 15,000
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs text-neutral-500 mb-1">Balance Amount</label>
+                                <div class="bg-neutral-100 dark:bg-neutral-700 rounded-lg py-2 px-4">
+                                    <p class="font-semibold text-neutral-800 dark:text-white">
+                                        Rs. 60,000
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button"
+                                    class="btn bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-5 py-2 w-24">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+                <div class="card-header p-4">
+                    <h6 class="card-title mb-0 text-base font-semibold">
+                        Mapping Manager
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <form action="#" class="space-y-4">
+                        <div class="flex items-end gap-4">
+                            <div class="flex-1">
+                                <label for="commissionPlan"
+                                    class="text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2 block">Select
+                                    Distributor and MDS
+                                </label>
+                                <select id="commissionPlan"
+                                    class="form-select w-full rounded-lg border-neutral-300 dark:border-neutral-600 dark:bg-neutral-800">
+                                    <option>DS000001 : - Raghuwanshi Kumbhar</option>
+                                    <option selected>02:- Individual Plan Offer</option>
+                                </select>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <button type="submit"
+                                    class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-2">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="mt-2">Note:- Currently this agent is mapped under Admin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+    <div class="grid grid-cols-6">
+        <div class="col-span-6">
+            <div class="card border-0 overflow-hidden">
+                <div class="card-header">
+                    <h6 class="card-title mb-0 text-lg">User KYC Updates</h6>
+                </div>
+                <div class="card-body">
+                    <table id="selection-table"
+                        class="border border-neutral-200 dark:border-neutral-600 rounded-lg border-separate w-full">
+                        <thead>
+                            <tr>
+                                <th scope="col"
+                                    class="text-neutral-800 dark:text-white border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label flex justify-center" for="serial">
+                                            Document Name
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col"
+                                    class="text-neutral-800 dark:text-white border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="flex items-center gap-2 flex justify-center">
+                                        View Document
+                                    </div>
+                                </th>
+                                <th scope="col"
+                                    class="text-neutral-800 dark:text-white border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="flex items-center gap-4">Upload Document</div>
+                                </th>
+                                <th scope="col"
+                                    class="text-neutral-800 dark:text-white border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="flex items-center gap-2 flex justify-center">
+                                        Approve / Reject
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Pan Card Number
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <a href="javascript:void(0)" class="text-primary-600">#526534</a>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg-success-700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Aadhaar Card Number
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <a href="javascript:void(0)" class="text-primary-600">#696589</a>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-danger-600 hover:bg-danger-700 text-white rounded-lg px-3 py-1">
+                                        Rejected
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label"> Pan Card </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg-success-700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label"> Aadhaar Card </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-danger-600 hover:bg-danger-700 text-white rounded-lg px-3 py-1">
+                                        Rejected
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label"> Cancel Cheque </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg-success-700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Other Document
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg--700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button"
+                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px] mt-4">
+                        Primary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-6">
+        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg mt-2">
+            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
+                <h6 class="card-title mb-0 text-base font-semibold">
+                    User Agent ID Update - BBPS - Bill Avenue
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <form action="#">
+                    <div class="flex flex-col gap-4">
+                        <div>
+                            <label for="agentType"
+                                class="text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2 block">Agent
+                                Type</label>
+                            <select id="agentType"
+                                class="form-select w-full rounded-lg border-neutral-300 dark:border-neutral-600 dark:bg-neutral-800 focus:ring-primary-500 focus:border-primary-500">
+                                <option selected>Agent ID (Bill Avenue)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="agentId"
+                                class="text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2 block">Agent
+                                ID</label>
+                            <input type="password" id="agentId"
+                                class="form-input w-full rounded-lg border-neutral-300 dark:border-neutral-600 dark:bg-neutral-800 focus:ring-primary-500 focus:border-primary-500"
+                                value="********" />
+                        </div>
+                        <div class="text-right">
+                            <button type="submit"
+                                class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-2">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg mt-2">
+            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
+                <h6 class="card-title mb-0 text-base font-semibold">
+                    User Platform Accessibilities
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <form action="#">
+                    <div class="flex flex-col">
+                        <div>
+                            <label for="agentType"
+                                class="text-sm font-medium text-neutral-600 dark:text-neutral-300 block">Select the User
+                                Platform
+                            </label>
+                            <div class="card-body px-4">
+                                <div class="grid grid-cols-2 gap-8">
+                                    <!-- Left Column -->
+                                    <div class="flex flex-col gap-5">
+                                        <div class="flex items-center gap-3">
+                                            <label for="raise-request"
+                                                class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left">
+                                                Mobile Application
+                                            </label>
+                                            <div class="form-check style-check flex items-center">
+                                                <input
+                                                    class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                                                    type="checkbox" name="checkbox" id="raise-request" checked />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Column -->
+                                    <div class="flex flex-col gap-5">
+                                        <div class="flex items-center gap-3">
+                                            <label for="request-report"
+                                                class="bg-neutral-100 dark:bg-neutral-700 px-6 py-2 rounded-xl font-medium text-lg text-neutral-600 dark:text-neutral-200 flex-1 text-left">
+                                                Web Portal Access
+                                            </label>
+                                            <div class="form-check style-check flex items-center">
+                                                <input
+                                                    class="form-check-input rounded border border-neutral-400 dark:border-neutral-500"
+                                                    type="checkbox" name="checkbox" id="request-report" checked />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit"
+                                class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-2">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
+    <div class="grid grid-cols-6">
+        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+            <div class="card-header p-4">
+                <h6 class="card-title mb-0 text-base font-semibold">
+                    Bank Account Updates
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="border border-neutral-300 dark:border-neutral-700 rounded-lg overflow-hidden">
+                        <div class="p-2 bg-neutral-100 dark:bg-neutral-800">
+                            <h4 class="text-sm font-semibold text-center">
+                                Self Top-Up Bank
+                            </h4>
+                        </div>
+                        <div class="p-4">
+                            <form action="#" class="space-y-3">
+                                <div>
+                                    <label class="text-xs">01: A/c Name:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Number:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">Bank IFSC:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Type:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <p class="text-sm text-green-600 dark:text-green-500 text-center pt-2">
+                                    Current Status <span class="font-semibold">Active</span>
+                                </p>
+                                <div class="pt-2 space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Update
+                                        </button>
+                                        <button type="button"
+                                            class="btn bg-success-600 hover:bg-success-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Activate
+                                        </button>
+                                    </div>
+                                    <div class="flex justify-center mt-2">
+                                        <button type="button"
+                                            class="btn bg-danger-600 hover:bg-danger-700 text-white rounded-md px-3 py-1.5 text-xs">
+                                            Deactivate
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="border border-neutral-300 dark:border-neutral-700 rounded-lg overflow-hidden">
+                        <div class="p-2 bg-neutral-100 dark:bg-neutral-800">
+                            <h4 class="text-sm font-semibold text-center">
+                                Agent Top-Up Bank
+                            </h4>
+                        </div>
+                        <div class="p-4">
+                            <form action="#" class="space-y-3">
+                                <div>
+                                    <label class="text-xs">02: A/c Name:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Number:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">Bank IFSC:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Type:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <p class="text-sm text-red-600 dark:text-red-500 text-center pt-2">
+                                    Current Status <span class="font-semibold">Deactivated</span>
+                                </p>
+                                <div class="pt-2 space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Update
+                                        </button>
+                                        <button type="button"
+                                            class="btn bg-success-600 hover:bg-success-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Activate
+                                        </button>
+                                    </div>
+                                    <div class="flex justify-center mt-2">
+                                        <button type="button"
+                                            class="btn bg-danger-600 hover:bg-danger-700 text-white rounded-md px-3 py-1.5 text-xs">
+                                            Deactivate
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="border border-neutral-300 dark:border-neutral-700 rounded-lg overflow-hidden">
+                        <div class="p-2 bg-neutral-100 dark:bg-neutral-800">
+                            <h4 class="text-sm font-semibold text-center">
+                                Settlement Bank A/c
+                            </h4>
+                        </div>
+                        <div class="p-4">
+                            <form action="#" class="space-y-3">
+                                <div>
+                                    <label class="text-xs">03: A/c Name:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Number:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">Bank IFSC:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <div>
+                                    <label class="text-xs">A/c Type:</label>
+                                    <input type="text"
+                                        class="form-input w-full rounded-md text-sm border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1.5 px-3" />
+                                </div>
+                                <p class="text-sm text-green-600 dark:text-green-500 text-center pt-2">
+                                    Current Status <span class="font-semibold">Active</span>
+                                </p>
+                                <div class="pt-2 space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Update
+                                        </button>
+                                        <button type="button"
+                                            class="btn bg-success-600 hover:bg-success-700 text-white rounded-md text-center py-1.5 text-xs w-full">
+                                            Activate
+                                        </button>
+                                    </div>
+                                    <div class="flex justify-center mt-2">
+                                        <button type="button"
+                                            class="btn bg-danger-600 hover:bg-danger-700 text-white rounded-md px-3 py-1.5 text-xs">
+                                            Deactivate
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-6">
+        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+            <div class="card-header p-4">
+                <h6 class="card-title mb-0 text-base font-semibold">
+                    Password Manager
+                </h6>
+            </div>
+            <div class="card-body p-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border border-neutral-300 dark:border-neutral-700 rounded-lg p-4">
+                        <h4
+                            class="text-sm font-semibold text-center mb-4 bg-neutral-100 dark:bg-neutral-800 py-2 rounded-md">
+                            Reset Transactional Password
+                        </h4>
+                        <form action="#" class="space-y-4">
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="trans_current" class="text-sm col-span-1">Current :</label>
+                                <input type="password" id="trans_current"
+                                    class="form-input w-full rounded-md text-lg col-span-3 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="trans_new" class="text-sm col-span-1">New :</label>
+                                <input type="password" id="trans_new"
+                                    class="form-input w-full rounded-md text-lg col-span-3 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="trans_retype" class="text-sm col-span-1">Re-type :</label>
+                                <input type="password" id="trans_retype"
+                                    class="form-input w-full rounded-md text-lg col-span-3 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="text-right pt-2">
+                                <button type="button"
+                                    class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-md px-5 py-2 text-sm">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="border border-neutral-300 dark:border-neutral-700 rounded-lg p-4">
+                        <h4
+                            class="text-sm font-semibold text-center mb-4 bg-neutral-100 dark:bg-neutral-800 py-2 rounded-md">
+                            Reset Login Password
+                        </h4>
+                        <form action="#" class="space-y-4">
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="login_current" class="text-sm col-span-1">Current :</label>
+                                <input type="password" id="login_current"
+                                    class="form-input w-full rounded-md text-lg col-span-1 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="login_new" class="text-sm col-span-1">New :</label>
+                                <input type="password" id="login_new"
+                                    class="form-input w-full rounded-md text-lg col-span-3 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="grid grid-cols-6 items-center gap-x-2">
+                                <label for="login_retype" class="text-sm col-span-1">Re-type :</label>
+                                <input type="password" id="login_retype"
+                                    class="form-input w-full rounded-md text-lg col-span-3 border-neutral-300 dark:border-neutral-600 dark:bg-neutral-900 py-1 px-4" />
+                            </div>
+                            <div class="text-right">
+                                <button type="button"
+                                    class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-md px-5 py-2 text-sm">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-4">
+                    <span class="font-semibold">Note -</span> Otp verification needs to be
+                    required to reset the password.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

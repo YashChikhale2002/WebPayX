@@ -2,217 +2,238 @@
 
 {% block content %}
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6 flex items-center justify-between">
-                    <h6 class="text-lg font-semibold mb-0">Heading</h6>
-                    <h6 class="text-lg font-semibold mb-0">Font Size</h6>
-                </div>
-                <div class="card-body py-4 px-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h1>Heading 1</h1>
-                        <span class="text-base text-secondary-light font-normal">60px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h2>Heading 2</h2>
-                        <span class="text-base text-secondary-light font-normal">48px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h3>Heading 3</h3>
-                        <span class="text-base text-secondary-light font-normal">36px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h4>Heading 4</h4>
-                        <span class="text-base text-secondary-light font-normal">30px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h5>Heading 5</h5>
-                        <span class="text-base text-secondary-light font-normal">24px</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <h6>Heading 6</h6>
-                        <span class="text-base text-secondary-light font-normal">20px</span>
-                    </div>
+  <style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+<div class="card border-0 over mb-2">
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
+        <div class="flex-shrink-0">
+            <label for="fromDate" class="form-label">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label for="toDate" class="form-label">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Select Users</label>
+            <div>
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Retailer
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Retailer</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Master Distributor</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">White Label Partner</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6 flex items-center justify-between">
-                    <h6 class="text-lg font-semibold mb-0">Display Heading</h6>
-                    <h6 class="text-lg font-semibold mb-0">Font Size</h6>
-                </div>
-                <div class="card-body py-4 px-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h1>Display 1</h1>
-                        <span class="text-base text-secondary-light font-normal">60px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h2>Display 2</h2>
-                        <span class="text-base text-secondary-light font-normal">48px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h3>Display 3</h3>
-                        <span class="text-base text-secondary-light font-normal">36px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h4>Display 4</h4>
-                        <span class="text-base text-secondary-light font-normal">30px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <h5>Display 5</h5>
-                        <span class="text-base text-secondary-light font-normal">24px</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <h6>Display 6</h6>
-                        <span class="text-base text-secondary-light font-normal">20px</span>
-                    </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">KYC Status</label>
+            <div>
+                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Active Member
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="statusDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active Member</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">In-Active Member</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Heading Colors</h6>
-                </div>
-                <div class="card-body py-4 px-6">
-                    <h1 class="text-primary-600 dark:text-primary-600 mb-4 leading-[60px]">Heading 1</h1>
-                    <h2 class="text-success-600 dark:text-success-600 mb-4 leading-[60px]">Heading 2</h2>
-                    <h3 class="text-warning-600 dark:text-warning-600 mb-4 leading-[60px]">Heading 3</h3>
-                    <h4 class="text-danger-600 dark:text-danger-600 mb-4">Heading 4</h4>
-                    <h5 class="text-info-600 dark:text-info-600 mb-4">Heading 5</h5>
-                    <h6 class="text-neutral-500 dark:text-neutral-200">Heading 6</h6>
-                </div>
-            </div>
+
+        <div class="flex flex-shrink-0 gap-2">
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
         </div>
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Inine Text Elements</h6>
-                </div>
-                <div class="card-body py-4 px-6">
-                    <p class="mb-4 text-secondary-light font-normal">You can use the mark tag to <span class="text-warning-600 dark:text-warning-500 bg-warning-100 dark:bg-warning-600/25 px-1.5">highlight</span> text</p>
-                    <p class="mb-4 text-secondary-light font-normal line-through">This is a paragraph. it stands out from regular Delete text </p>
-                    <p class="mb-4 text-secondary-light font-normal line-through">This line of text is meant to be treated as no longer accurate.</p>
-                    <p class="mb-4 text-secondary-light font-normal underline">This line of text will render as underlined</p>
-                    <p class="mb-4 text-secondary-light font-normal underline">This line of text is meant to be treated as an addition to the document.</p>
-                    <p class="mb-4 text-secondary-light font-normal">This is a paragraph. it stands out from regular text.</p>
-                    <p class="mb-4 text-secondary-light font-semibold">This line rendered as bold text.</p>
-                    <p class="mb-4 text-secondary-light italic">This line rendered as italicized text.</p>
-                    <p class="text-secondary-light italic">This line rendered as italicized text.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6 flex items-center justify-between">
-                    <h6 class="text-lg font-semibold mb-0">Text</h6>
-                    <h6 class="text-lg font-semibold mb-0">Font Size</h6>
-                </div>
-                <div class="card-body py-4 px-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <p class="text-lg text-secondary-light">This is text</p>
-                        <span class="text-sm text-secondary-light font-normal">18px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <p class="text-base text-secondary-light">This is text</p>
-                        <span class="text-sm text-secondary-light font-normal">16px</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-4">
-                        <p class="text-sm text-secondary-light">This is text</p>
-                        <span class="text-sm text-secondary-light font-normal">14px</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <p class="text-xs text-secondary-light">This is text</p>
-                        <span class="text-sm text-secondary-light font-normal">12px</span>
+    </div>
+</div>
+
+<div class="grid grid-cols-12">
+    <div class="col-span-12">
+        <div class="card border-0">
+            <div class="card-header flex flex-wrap items-center justify-between gap-3">
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <h6>Create Retailer</h6>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-span-12 md:col-span-6">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Text Decoration</h6>
+            <div class="card-body">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table bordered-table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div class="form-check style-check flex items-center gap-2">
+                                        <label class="form-check-label" for="checkAll">
+                                            Sr. No
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Member ID</th>
+                                <th scope="col">DS Name</th>
+                                <th scope="col">Member Name</th>
+                                <th scope="col">State Name</th>
+                                <th scope="col">District Name</th>
+                                <th scope="col">KYC Status</th>
+                                <th scope="col">Commission Plan</th>
+                                <th scope="col">Actions</th>
+                                <th scope="col">Permission</th>
+                                <th scope="col">View Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" class="text-primary-600">25 Jan 2025
+                                    </a>
+                                </td>
+
+                                <td>#696589</td>
+                                <td>Abhishek Parate</td>
+                                <td>1000.00</td>
+
+                                <td>200.00</td>
+
+                                <td>10000.00</td>
+                                <td>200</td>
+                                <td>Maharastra</td>
+                                <td>Nagpur</td>
+                                <td>
+                                    <!-- Dropdown Start -->
+                                    <div class="">
+                                        <button data-dropdown-toggle="dev" data-dropdown-placement="bottom"
+                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                                            type="button">
+                                            Select
+                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                            </svg>
+                                        </button>
+                                        <!-- Dropdown menu -->
+                                        <div id="dev"
+                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"
+                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Dropdown End -->
+                                </td>
+                                <td>
+                                    <span
+                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
+                                        Department</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="card-body py-4 px-6">
-                    <p class="mb-4 text-secondary-light font-normal">Use underline, line-through, or text-decoration-none class to decorate text in components respectively.</p>
-                    <p class="mb-4 text-neutral-600 dark:text-neutral-200 font-normal underline">This text has a line underneath it.</p>
-                    <p class="mb-4 text-neutral-600 dark:text-neutral-200 font-normal line-through">This text has a line going through it.</p>
-                    <p class="text-secondary-light font-normal">This link has its text decoration removed</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-span-12 xl:col-span-12">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Blockquote Background Color Text</h6>
-                </div>
-                <div class="card-body p-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="p-4 bg-info-50 dark:bg-info-600/20 rounded-lg border-l-[3px] border-info border-info-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-info-600 dark:text-info-500 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-success-50 dark:bg-success-600/20 rounded-lg border-l-[3px] border-success-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-success-600 dark:text-success-500 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-info-50 dark:bg-info-600/20 rounded-lg border-l-[3px] border-info-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-info-600 dark:text-info-500 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-danger-50 dark:bg-danger-600/20 rounded-lg border-l-[3px] border-danger-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-danger-600 dark:text-danger-500 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-warning-50 dark:bg-warning-600/20 rounded-lg border-l-[3px] border-warning-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-warning-600 dark:text-warning-500 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-neutral-50 dark:bg-neutral-600 rounded-lg border-l-[3px] border-neutral-600 dark:border-neutral-200">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-neutral-600 dark:text-neutral-200 mb-0">- WowDash</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-span-12 xl:col-span-12">
-            <div class="card h-full p-0 border-0 overflow-hidden">
-                <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                    <h6 class="text-lg font-semibold mb-0">Blockquote Border Color</h6>
-                </div>
-                <div class="card-body p-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-cyan-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-cyan-600 dark:text-cyan-600 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-success-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-success-600 dark:text-success-600 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-info-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-info-600 dark:text-info-600 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-danger-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-danger-600 dark:text-danger-600 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-warning-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-warning-600 dark:text-warning-600 mb-0">- WowDash</span>
-                        </div>
-                        <div class="p-4 bg-transparent rounded-lg border border-start-width-3-px border-neutral-600">
-                            <h6 class="text-neutral-600 dark:text-neutral-200 text-base mb-2">Custom Blockquote Primary Example</h6>
-                            <span class="text-neutral-600 dark:text-neutral-200 mb-0">- WowDash</span>
-                        </div>
-                    </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
+                    <span>Showing 1 to 10 of 12 entries</span>
+                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
+                        <li class="page-item">
+                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
+                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
+                                    class="text-xl"></iconify-icon></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
+                                href="javascript:void(0)">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
+                                href="javascript:void(0)">
+                                <iconify-icon icon="ep:d-arrow-right" class="text-xl"></iconify-icon>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
