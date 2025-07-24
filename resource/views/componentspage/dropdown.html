@@ -26,7 +26,7 @@
     </div>
 
     <div class="flex-shrink-0">
-      <label class="form-label">Select Distributor</label>
+      <label class="form-label">Select MDSr</label>
       <div>
         <button
           data-dropdown-toggle="distributorDropdown"
@@ -34,7 +34,7 @@
           class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
           type="button"
         >
-          Select
+          All Member
           <svg
             class="w-2.5 h-2.5 ms-3"
             aria-hidden="true"
@@ -60,14 +60,14 @@
               <a
                 href="#"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Distributor 1</a
+                >MDS 00339483 - Virat Kohl</a
               >
             </li>
             <li>
               <a
                 href="#"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Distributor 2</a
+                >MDS 00735939 - Arjeet Singh</a
               >
             </li>
           </ul>
@@ -84,7 +84,7 @@
           class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
           type="button"
         >
-          Select
+          Active Member
           <svg
             class="w-2.5 h-2.5 ms-3"
             aria-hidden="true"
@@ -110,16 +110,10 @@
               <a
                 href="#"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Resolved</a
+                >In-Active Membe</a
               >
             </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Escalated</a
-              >
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -134,7 +128,7 @@
           class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
           type="button"
         >
-          Select
+          Pending
           <svg
             class="w-2.5 h-2.5 ms-3"
             aria-hidden="true"
@@ -160,16 +154,10 @@
               <a
                 href="#"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Verified</a
+                >Approved</a
               >
             </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Pending</a
-              >
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -192,7 +180,7 @@
         type="button"
         class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]"
       >
-        Create Agent
+        Create DS
       </button>
       <button
         type="button"
@@ -215,7 +203,7 @@
     <div class="card-header flex flex-wrap items-center justify-between gap-3">
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center gap-2">
-          <h6>Create Retailer</h6>
+          <h6>Create Distributor</h6>
         </div>
       </div>
     </div>
@@ -248,7 +236,7 @@
                     class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4"
                   >
                     <label class="form-check-label" for="checkAll">
-                      Agent ID
+                      Distributor ID
                     </label>
                   </div>
                 </th>
@@ -257,7 +245,7 @@
                     class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4"
                   >
                     <label class="form-check-label" for="checkAll">
-                      Agent Name
+                      Member Name
                     </label>
                   </div>
                 </th>
@@ -266,7 +254,7 @@
                     class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4"
                   >
                     <label class="form-check-label" for="checkAll">
-                      DS Name
+                      MDS Name
                     </label>
                   </div>
                 </th>
@@ -365,6 +353,15 @@
                     class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4"
                   >
                     <label class="form-check-label" for="checkAll">
+                      Member Count
+                    </label>
+                  </div>
+                </th>
+                <th scope="col">
+                  <div
+                    class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4"
+                  >
+                    <label class="form-check-label" for="checkAll">
                       Permission
                     </label>
                   </div>
@@ -438,6 +435,14 @@
                     <label class="form-check-label" for="check1"> 0123 </label>
                   </div>
                 </td>
+                <td>
+                  <div
+                    class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4"
+                  >
+                    <label class="form-check-label" for="check1"> 0123 </label>
+                  </div>
+                </td>
+                
                 <td>
                   <div
                     class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4"
