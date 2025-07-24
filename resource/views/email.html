@@ -1,392 +1,657 @@
-{% extends 'layout/layout.html' %}
+{% extends 'layout/layout.html' %} {% block content %}
 
-    {% block custom_script %}
-                <script>
-                    // Table Header Checkbox checked all js Start
-                    $("#selectAll").on("change", function() {
-                        $(".form-check .form-check-input").prop("checked", $(this).prop("checked"));
+<style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-                        if ($(this).prop("checked")) {
-                            $(".email-item").addClass("active");
-                        } else {
-                            $(".email-item").removeClass("active");
-                        }
-                    });
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 
-                    // Active Item with js
-                    $(".form-check .form-check-input").on("change", function() {
-                        if ($(this).is(":checked")) {
-                            $(this).closest(".email-item").addClass("active");
-                        } else {
-                            $(this).closest(".email-item").removeClass("active");
-                        }
-                    });
+<div class="card border-0 over mb-2">
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
+        <div class="flex-shrink-0">
+            <label for="fromDate" class="form-label">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
+        </div>
 
-                    // Selected Checkbox count amount js Start
-                    $(".email-card .form-check-input").on("change", function() {
-                        let selectedCount = $(".email-card .form-check-input:checked").length;
+        <div class="flex-shrink-0">
+            <label for="toDate" class="form-label">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" />
+        </div>
 
-                        if (selectedCount > 0) {
-                            $(".delete-button").removeClass("hidden");
-                        } else {
-                            $(".delete-button").addClass("hidden")
-                        }
-                    });
-                    // Selected Checkbox count amount js End
-
-                    $(".delete-button").on("click", function() {
-                        $(".email-item.active").addClass("hidden")
-                    });
-
-                    // Page Reload Js
-                    $(".reload-button").on("click", function() {
-                        history.go(0);
-                    });
-
-                    // Starred Button js
-                    $(".starred-button").on("click", function() {
-                        $(this).toggleClass("active")
-                    });
-                </script>
-        {% endblock %}
-
-{% block content %}
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <div class="col-span-12 xl:col-span-4 2xl:col-span-3">
-                <div class="card h-full p-0 border-0">
-                    <div class="card-body p-6">
-                        <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white dark:text-white text-sm btn-sm px-3 py-3 w-full rounded-lg flex items-center gap-2 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <iconify-icon icon="fa6-regular:square-plus" class="icon text-lg line-height-1"></iconify-icon>
-                            Compose
-                        </button>
-
-                        <div class="mt-4">
-                            <ul>
-                                <li class="item-active mb-1.5">
-                                    <a href="{{ url_for('email') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="uil:envelope" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Inbox</span>
-                                            </span>
-                                            <span class="font-medium">800</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="mb-1.5">
-                                    <a href="{{ url_for('starred') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="ph:star-bold" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Starred</span>
-                                            </span>
-                                            <span class="font-medium">250</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="mb-1.5">
-                                    <a href="{{ url_for('email') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="ion:paper-plane-outline" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Sent</span>
-                                            </span>
-                                            <span class="font-medium">80</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="mb-1.5">
-                                    <a href="{{ url_for('email') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="lucide:pencil" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Draft</span>
-                                            </span>
-                                            <span class="font-medium">50</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="mb-1.5">
-                                    <a href="{{ url_for('email') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="ph:warning-bold" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Spam</span>
-                                            </span>
-                                            <span class="font-medium">30</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('email') }}" class="hover:bg-primary-50 dark:hover:bg-primary-800/25 group hover:text-neutral-900 px-2.5 py-2.5 w-full rounded-lg text-neutral-600 flex items-center">
-                                        <span class="flex items-center gap-2.5 justify-between w-full">
-                                            <span class="flex items-center gap-2.5">
-                                                <span class="icon text-2xl line-height-1 flex group-hover:text-primary-600"><iconify-icon icon="material-symbols:delete-outline" class="icon line-height-1"></iconify-icon></span>
-                                                <span class="font-semibold">Bin</span>
-                                            </span>
-                                            <span class="font-medium">20</span>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="mt-6">
-                                <h6 class="text-lg font-semibold text-neutral-600 dark:text-neutral-200 mb-4">TAGS</h6>
-                                <ul>
-                                    <li class="mb-5">
-                                        <span class="line-height-1 font-medium text-secondary-light text-sm flex items-center gap-2.5">
-                                            <span class="w-2 h-2 bg-primary-600 rounded-full"></span>
-                                            Personal
-                                        </span>
-                                    </li>
-                                    <li class="mb-5">
-                                        <span class="line-height-1 font-medium text-secondary-light text-sm flex items-center gap-2.5">
-                                            <span class="w-2 h-2 bg-purple-600 rounded-full"></span>
-                                            Social
-                                        </span>
-                                    </li>
-                                    <li class="mb-5">
-                                        <span class="line-height-1 font-medium text-secondary-light text-sm flex items-center gap-2.5">
-                                            <span class="w-2 h-2 bg-success-600 rounded-full"></span>
-                                            Promotions
-                                        </span>
-                                    </li>
-                                    <li class="mb-5">
-                                        <span class="line-height-1 font-medium text-secondary-light text-sm flex items-center gap-2.5">
-                                            <span class="w-2 h-2 bg-warning-600 rounded-full"></span>
-                                            Business
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 xl:col-span-8 2xl:col-span-9">
-                <div class="card h-full p-0 border-0 email-card">
-                    <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                        <div class="flex flex-wrap items-center justify-between gap-4">
-                            <div class="flex items-center gap-3">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border bg-white dark:bg-neutral-600" type="checkbox" name="checkbox" id="selectAll">
-                                    <div class="">
-                                        <button data-dropdown-toggle="dropdownArrowDown" class="focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full w-4 h-4 flex items-center justify-center" type="button">
-                                            <iconify-icon icon="typcn:arrow-sorted-down" class="icon line-height-1"></iconify-icon>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dropdownArrowDown" class="sm:min-w-max z-10 hidden border border-transparent dark:border-neutral-600 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 dark:bg-gray-700">
-                                            <ul class="rounded-lg bg-white dark:bg-neutral-700 shadow p-4 text-sm text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalView">
-                                                        All
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                                        None
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                                        Read
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                                        Unread
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                                        Starred
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <button type="button" class="px-4 py-2 rounded text-neutral-600 dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-600 block w-full text-start text-hover-neutral-900" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                                                        Unstarred
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button" class="delete-button hidden text-secondary-light text-xl flex">
-                                    <iconify-icon icon="material-symbols:delete-outline" class="icon line-height-1"></iconify-icon>
-                                </button>
-                                <button type="button" class="reload-button text-secondary-light text-xl flex">
-                                    <iconify-icon icon="tabler:reload" class="icon"></iconify-icon>
-                                </button>
-
-                                <div class="">
-                                    <button data-dropdown-toggle="dropdownThreeDots" class="focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm dark:hover:bg-blue-700 dark:focus:ring-blue-800 rounded-full w-4 h-4 flex items-center justify-center" type="button">
-                                        <iconify-icon icon="entypo:dots-three-vertical" class="icon text-secondary-light"></iconify-icon>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    <div id="dropdownThreeDots" class="sm:min-w-max z-10 hidden border border-transparent dark:border-neutral-600 bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44 dark:bg-gray-700">
-                                        <ul class="p-4 text-sm text-gray-700 dark:text-gray-200">
-                                            <li>
-                                                <button type="button" class="dropdown-item px-4 py-2 rounded text-secondary-light hover:bg-neutral-200 dark:hover:bg-neutral-600 text-hover-neutral-900 flex items-center text-start gap-2.5" data-bs-toggle="modal" data-bs-target="#exampleModalView">
-                                                    <iconify-icon icon="gravity-ui:envelope-open" class="icon text-lg line-height-1"></iconify-icon>
-                                                    Mark all as read
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <p class="ms-10 mt-2 text-neutral-500 mb-0">
-                                                    Select messages to see more actions
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <form class="navbar-search lg:block hidden">
-                                    <input type="text" class="bg-white dark:text-white dark:bg-neutral-700 h-10 w-auto" name="search" placeholder="Search">
-                                    <iconify-icon icon="ion:search-outline" class="icon dark:text-white"></iconify-icon>
-                                </form>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <span class="text-secondary-light line-height-1">1-12 of 1,253</span>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination flex">
-                                        <li class="page-item">
-                                            <a class="page-link flex bg-white dark:bg-neutral-700 border text-secondary-light text-xl" href="javascript:void(0)"><iconify-icon icon="iconamoon:arrow-left-2" class="icon"></iconify-icon> </a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link flex bg-white dark:bg-neutral-700 border text-secondary-light text-xl" href="javascript:void(0)"><iconify-icon icon="iconamoon:arrow-right-2" class="icon"></iconify-icon> </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="overflow-x-auto">
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Jerome Bell</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Kristin Watson</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Cody Fisher</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Dianne Russell</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Floyd Miles</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Devon Lane</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Dianne Russell</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Annette Black</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Bessie Cooper</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Courtney Henry</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                            <li class="email-item px-6 py-4 flex gap-4 items-center border-b last:border-0 border-neutral-200 dark:border-neutral-600 cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-600 min-w-max">
-                                <div class="form-check style-check flex items-center">
-                                    <input class="form-check-input rounded border border-neutral-400 bg-white dark:bg-neutral-600" type="checkbox" name="checkbox">
-                                </div>
-                                <button type="button" class="starred-button icon text-xl text-secondary-light line-height-1 flex">
-                                    <i class="ri-star-line"></i>
-                                </button>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium text-base text-line-1 w-[190px]">Wade Warren</a>
-                                <a href="{{ url_for('viewDetails') }}" class="text-neutral-600 dark:text-neutral-200 font-medium mb-0 line-clamp-1 max-w-[740px]">Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus. Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus</a>
-                                <span class="text-neutral-600 dark:text-neutral-200 font-medium min-w-max-content ms-auto">6:07 AM</span>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="flex-shrink-0">
+            <label class="form-label">Select API Service</label>
+            <div>
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                   Select Service
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Payment Gateway Services
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">CC Bill Payment API
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bank Settlement API
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> Money Transfer API
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mobile Recharge API
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> SMS API
+                                </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+       
+       
+
+        <div class="flex flex-shrink-0 gap-2">
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+          
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-12">
+    <div class="col-span-12">
+        <div class="card-header flex flex-wrap items-center justify-between gap-3">
+          
+        </div>
+        <div class="border border-gray-300 rounded">
+            <div class="card-body border border-gray-300 rounded bg-white">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table mb-0 bg-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Sr. No
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            API - Service
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          Total Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                           Success Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            %
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          Pending Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          %
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Failed Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          %
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          Refunded Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                          %
+                                        </label>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 01 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Payment Gateway API </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 750 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 700 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> % </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>  
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                            </tr>
+                           <tr>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 02 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Money Transfer Service </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 1500 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 1200 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> % </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>  
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                            </tr>
+                            <tr>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 03</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Bill Payment API Service</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 750 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 650 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> % </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>  
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">750 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                            </tr>
+                            <tr>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 04 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Mobile Recharge Services </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 1500 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 1400 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> % </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>  
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">1500 </label>
+                                    </div>
+                                </td>
+                                 <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">% </label>
+                                    </div>
+                                </td> 
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize all dropdowns
+        document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+            const button = dropdown.querySelector('.dropdown-button');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            const icon = dropdown.querySelector('.dropdown-icon');
+            const selectedText = dropdown.querySelector('.selected-text');
+
+            let hideTimer = null;
+
+            // Toggle dropdown
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.payment-dropdown').forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.querySelector('.dropdown-menu').classList.add('hidden');
+                        otherDropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+                        hideAllSubMenus(otherDropdown);
+                    }
+                });
+
+                const isHidden = menu.classList.contains('hidden');
+                if (isHidden) {
+                    menu.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    menu.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    hideAllSubMenus(dropdown);
+                }
+            });
+
+            // Handle dropdown items
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                const mainButton = item.querySelector('button[data-value]');
+                const submenu = item.querySelector('.submenu');
+
+                // Hover for submenu
+                item.addEventListener('mouseenter', function () {
+                    clearTimeout(hideTimer);
+                    hideAllSubMenus(dropdown);
+                    if (submenu) {
+                        submenu.classList.remove('hidden');
+                    }
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    hideTimer = setTimeout(() => {
+                        if (submenu) {
+                            submenu.classList.add('hidden');
+                        }
+                    }, 200);
+                });
+
+                // Main option selection
+                mainButton.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    selectedText.textContent = value;
+                    menu.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    hideAllSubMenus(dropdown);
+                    updateActiveState(dropdown, this);
+                });
+
+                // Submenu option selection
+                if (submenu) {
+                    submenu.addEventListener('mouseenter', function () {
+                        clearTimeout(hideTimer);
+                    });
+
+                    submenu.addEventListener('mouseleave', function () {
+                        this.classList.add('hidden');
+                    });
+
+                    submenu.querySelectorAll('button[data-value]').forEach(subButton => {
+                        subButton.addEventListener('click', function () {
+                            const value = this.getAttribute('data-value');
+                            selectedText.textContent = value;
+                            menu.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
+                            hideAllSubMenus(dropdown);
+                        });
+                    });
+                }
+            });
+
+            function hideAllSubMenus(dropdownElement) {
+                dropdownElement.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.classList.add('hidden');
+                });
+            }
+
+            function updateActiveState(dropdownElement, selectedButton) {
+                // Reset all buttons
+                dropdownElement.querySelectorAll('.dropdown-item > button').forEach(btn => {
+                    btn.className = "w-full px-4 py-3 text-left text-gray-700 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 flex items-center justify-between border-b border-gray-100";
+                    const svg = btn.querySelector('svg');
+                    if (svg) svg.className = "w-4 h-4 text-gray-400";
+                });
+
+                // Set active state
+                selectedButton.className = "w-full px-4 py-3 text-left text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600 flex items-center justify-between border-b border-gray-100";
+                const svg = selectedButton.querySelector('svg');
+                if (svg) svg.className = "w-4 h-4 text-white";
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+                dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+                dropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+            });
+        });
+    });
+
+
+    // Add this inside your DOMContentLoaded event listener, after the payment dropdown code
+
+    // Initialize all simple dropdowns
+    document.querySelectorAll('.simple-dropdown').forEach(dropdown => {
+        const button = dropdown.querySelector('.simple-dropdown-button');
+        const menu = dropdown.querySelector('.simple-dropdown-menu');
+        const icon = dropdown.querySelector('.simple-dropdown-icon');
+        const selectedText = dropdown.querySelector('.simple-selected-text');
+
+        // Toggle dropdown
+        button.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            // Close all other simple dropdowns
+            document.querySelectorAll('.simple-dropdown').forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.querySelector('.simple-dropdown-menu').classList.add('hidden');
+                    otherDropdown.querySelector('.simple-dropdown-icon').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                menu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Handle option selection
+        dropdown.querySelectorAll('.simple-dropdown-option').forEach(option => {
+            option.addEventListener('click', function (e) {
+                e.preventDefault();
+                const value = this.getAttribute('data-value');
+                selectedText.textContent = value;
+                menu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            });
+        });
+    });
+
+    // Update the existing click outside listener to include simple dropdowns
+    document.addEventListener('click', function () {
+        // Close payment dropdowns
+        document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+            dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+            dropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+        });
+
+        // Close simple dropdowns
+        document.querySelectorAll('.simple-dropdown').forEach(dropdown => {
+            dropdown.querySelector('.simple-dropdown-menu').classList.add('hidden');
+            dropdown.querySelector('.simple-dropdown-icon').style.transform = 'rotate(0deg)';
+        });
+    });
+</script>
 
 {% endblock %}
