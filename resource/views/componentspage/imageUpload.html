@@ -1,175 +1,911 @@
-{% extends 'layout/layout.html' %}
+{% extends 'layout/layout.html' %} {% block content %}
 
-    {% block custom_script %}
-            <script>
-                // =============================== Upload Single Image js start here ================================================
-                const fileInput = document.getElementById("upload-file");
-                const imagePreview = document.getElementById("uploaded-img__preview");
-                const uploadedImgContainer = document.querySelector(".uploaded-img");
-                const removeButton = document.querySelector(".uploaded-img__remove");
-                
-                fileInput.addEventListener("change", (e) => {
-                    if (e.target.files.length) {
-                        const src = URL.createObjectURL(e.target.files[0]);
-                        imagePreview.src = src;
-                        uploadedImgContainer.classList.remove("hidden");
-                    }
-                });
-                removeButton.addEventListener("click", () => {
-                    imagePreview.src = "";
-                    uploadedImgContainer.classList.add("hidden");
-                    fileInput.value = "";
-                });
-                // =============================== Upload Single Image js End here ================================================
-            
-                // ================================================ Upload Multiple image js Start here ================================================
-                const fileInputMultiple = document.getElementById("upload-file-multiple");
-                const uploadedImgsContainer = document.querySelector(".uploaded-imgs-container");
-            
-                fileInputMultiple.addEventListener("change", (e) => {
-                    const files = e.target.files;
-                
-                    Array.from(files).forEach(file => {
-                        const src = URL.createObjectURL(file);
-                    
-                        const imgContainer = document.createElement("div");
-                        imgContainer.classList.add("position-relative", "h-120-px", "w-120-px", "border", "input-form-light", "radius-8", "overflow-hidden", "border-dashed", "bg-neutral-50");
-                    
-                        const removeButton = document.createElement("button");
-                        removeButton.type = "button";
-                        removeButton.classList.add("uploaded-img__remove", "position-absolute", "top-0", "end-0", "z-1", "text-2xxl", "line-height-1", "me-8", "mt-8", "d-flex");
-                        removeButton.innerHTML = "<iconify-icon icon=\'radix-icons:cross-2\' class=\'text-xl text-danger-600\'></iconify-icon>";
-                    
-                        const imagePreview = document.createElement("img");
-                        imagePreview.classList.add("w-100", "h-100", "object-fit-cover");
-                        imagePreview.src = src;
-                    
-                        imgContainer.appendChild(removeButton);
-                        imgContainer.appendChild(imagePreview);
-                        uploadedImgsContainer.appendChild(imgContainer);
-                    
-                        removeButton.addEventListener("click", () => {
-                            URL.revokeObjectURL(src);
-                            imgContainer.remove();
-                        });
-                    });
-                
-                    // Clear the file input so the same file(s) can be uploaded again if needed
-                    fileInputMultiple.value = "";
-                });
-                // ================================================ Upload Multiple image js End here  ================================================
-            
-                // ================================================ Upload image & show it\'s name js start  ================================================
-                document.getElementById("file-upload-name").addEventListener("change", function(event) {
-                    var fileInput = event.target;
-                    var fileList = fileInput.files;
-                    var ul = document.getElementById("uploaded-img-names");
-                
-                    // Add show-uploaded-img-name class to the ul element if not already added
-                    ul.classList.add("show-uploaded-img-name");
-                
-                    // Append each uploaded file name as a list item with Font Awesome and Iconify icons
-                    for (var i = 0; i < fileList.length; i++) {
-                        var li = document.createElement("li");
-                        li.classList.add("uploaded-image-name-list", "text-primary-600", "fw-semibold", "d-flex", "align-items-center", "gap-2");
-                    
-                        // Create the Link Iconify icon element
-                        var iconifyIcon = document.createElement("iconify-icon");
-                        iconifyIcon.setAttribute("icon", "ph:link-break-light");
-                        iconifyIcon.classList.add("text-xl", "text-secondary-light");
-                    
-                        // Create the Cross Iconify icon element
-                        var crossIconifyIcon = document.createElement("iconify-icon");
-                        crossIconifyIcon.setAttribute("icon", "radix-icons:cross-2");
-                        crossIconifyIcon.classList.add("remove-image", "text-xl", "text-secondary-light", "text-hover-danger-600");
-                    
-                        // Add event listener to remove the image on click
-                        crossIconifyIcon.addEventListener("click", (function(liToRemove) {
-                            return function() {
-                                ul.removeChild(liToRemove); // Remove the corresponding list item
-                            };
-                        })(li)); // Pass the current list item as a parameter to the closure
-                    
-                        // Append both icons to the list item
-                        li.appendChild(iconifyIcon);
-                    
-                        // Append the file name text to the list item
-                        li.appendChild(document.createTextNode(" " + fileList[i].name));
-                    
-                        li.appendChild(crossIconifyIcon);
-                    
-                        // Append the list item to the unordered list
-                        ul.appendChild(li);
-                    }
-                });
-                // ================================================ Upload image & show it\'s name js end ================================================
-            </script>
-        {% endblock %}
+<style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 
-{% block content %}
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="card h-full p-0 border-0 overflow-hidden">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                <h6 class="text-lg font-semibold mb-0">Basic Upload</h6>
-            </div>
-            <div class="card-body p-6">
-                <label for="basic-upload" class="border border-primary-600 font-medium text-primary-600 px-4 py-3 rounded-xl inline-flex items-center gap-2 cursor-pointer hover:bg-primary-50">
-                    <iconify-icon icon="solar:upload-linear" class="text-xl"></iconify-icon>
-                    Click to upload
-                </label>
-                <input type="file" id="basic-upload" class="block w-full text-sm  text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 mt-6">
-            </div>
+<div class="card border-0 over mb-2">
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
+        <div class="flex-shrink-0">
+            <label for="fromDate" class="form-label">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
         </div>
-        <div class="card h-full p-0 border-0 overflow-hidden">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                <h6 class="text-lg font-semibold mb-0">Image Upload</h6>
-            </div>
-            <div class="card-body p-6">
-                <div class="upload-image-wrapper flex items-center gap-3">
-                    <div class="uploaded-img hidden relative h-[120px] w-[120px] border input-form-light rounded-lg overflow-hidden border-dashed bg-neutral-50 dark:bg-neutral-600">
-                        <button type="button" class="uploaded-img__remove absolute top-0 end-0 z-1 text-2xxl line-height-1 me-8 mt-2 flex">
-                            <iconify-icon icon="radix-icons:cross-2" class="text-xl text-danger-600"></iconify-icon>
-                        </button>
-                        <img id="uploaded-img__preview" class="w-full h-full object-fit-cover" src="{{ url_for('static', filename='assets/images/user.png') }}" alt="image">
-                    </div>
 
-                    <label class="upload-file h-[120px] w-[120px] border input-form-light rounded-lg overflow-hidden border-dashed bg-neutral-50 dark:bg-neutral-600 hover:bg-neutral-200 flex items-center flex-col justify-center gap-1" for="upload-file">
-                        <iconify-icon icon="solar:camera-outline" class="text-xl text-secondary-light"></iconify-icon>
-                        <span class="font-semibold text-secondary-light">Upload</span>
-                        <input id="upload-file" type="file" hidden>
-                    </label>
+        <div class="flex-shrink-0">
+            <label for="toDate" class="form-label">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" />
+        </div>
+        <div class="flex-shrink-0">
+            <label class="form-label">Service Name</label>
+            <div>
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select The Service
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Payment
+                                Gateway</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bill
+                                Payment Services</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bank
+                                Settlement</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Money
+                                Transfer</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mobile
+                                & DTH Recharge</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Other</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="card h-full p-0 border-0 overflow-hidden">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                <h6 class="text-lg font-semibold mb-0">Upload With image preview</h6>
-            </div>
-            <div class="card-body p-6">
-                <div class="upload-image-wrapper flex items-center gap-3 flex-wrap">
-                    <div class="uploaded-imgs-container flex gap-3 flex-wrap"></div>
-                    <label class="upload-file-multiple h-[120px] w-[120px] border input-form-light rounded-lg overflow-hidden border-dashed bg-neutral-50 dark:bg-neutral-600 hover:bg-neutral-200 flex items-center flex-col justify-center gap-1" for="upload-file-multiple">
-                        <iconify-icon icon="solar:camera-outline" class="text-xl text-secondary-light"></iconify-icon>
-                        <span class="font-semibold text-secondary-light">Upload</span>
-                        <input id="upload-file-multiple" type="file" hidden multiple>
-                    </label>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Action</label>
+            <div>
+                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select the Action
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="statusDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activated</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactivated</a>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="card h-full p-0 border-0 overflow-hidden">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 bg-white dark:bg-neutral-700 py-4 px-6">
-                <h6 class="text-lg font-semibold mb-0">Upload With image preview</h6>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Created By</label>
+            <div>
+                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select the Creator
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="kycDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">White
+                                Label Partner</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Employee</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-body p-6">
-                <label for="file-upload-name" class="mb-4 border border-neutral-600 font-medium text-secondary-light px-4 py-3 rounded-xl inline-flex items-center gap-2 hover:bg-neutral-200">
-                    <iconify-icon icon="solar:upload-linear" class="text-xl"></iconify-icon>
-                    Click to upload
-                    <input type="file" class="form-control w-auto mt-6 form-control-lg" id="file-upload-name" multiple hidden>
-                </label>
-                <ul id="uploaded-img-names" class=""></ul>
+        </div>
+
+
+
+        <div class="flex flex-shrink-0 gap-2">
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Create New
+            </button>
+
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-12">
+    <div class="col-span-12">
+        <div class="card-header flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-2">
+                    <h6>Create Retailer</h6>
+                </div>
+            </div>
+        </div>
+        <div class="border border-gray-300 rounded">
+            <div class="card-body border border-gray-300 rounded bg-white">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table mb-0 bg-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Sr. No
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Created Date
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Created Name
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Template Service Name
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                           Update
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                           Delete
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                           Actions
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                      Dispositions
+                                        </label>
+                                    </div>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 01</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">31-05-2025</label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Admin</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Payment Gateway Service</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Update</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Delete </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Activate</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                           <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">WL-0001 </label>
+                                    </div>
+                                </td>
+                            </tr>
+                           <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 02</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">31-05-2025</label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">White Label - XYZ Ltd</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Bill Payment Services</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Update</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Delete </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Deactivate</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                           <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">WL-0002 </label>
+                                    </div>
+                                </td>
+                            </tr>
+                           
+                            <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 03</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">31-05-2025</label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Admin</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Mobile Recharge Service</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Update</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Delete </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Activate</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                           <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">WL-0003 </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 04</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">31-05-2025</label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">White Label - XYZ Ltd</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Money Transfer Services</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Update</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Delete </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Deactivate</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                           <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">WL-0002 </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 05</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">31-05-2025</label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Admin</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Payout - Settlement Services</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Update</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">Delete </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <div class="simple-dropdown relative">
+                                            <button
+                                                class="simple-dropdown-button w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center justify-between shadow-sm"
+                                                type="button">
+                                                <span class="simple-selected-text">Activate</span>
+                                                <svg class="simple-dropdown-icon w-2.5 h-2.5 ms-3 transition-transform duration-200"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                class="simple-dropdown-menu hidden absolute top-full left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 mt-1">
+                                                <ul class="py-2 text-base text-gray-700">
+                                                    <li>
+                                                        <button
+                                                            class="simple-dropdown-option w-full text-left block px-4 py-2 hover:bg-gray-100"
+                                                            data-value="Distributor 1"></button>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                              
+                                </td>
+                                           <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1">WL-0003 </label>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize all dropdowns
+        document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+            const button = dropdown.querySelector('.dropdown-button');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            const icon = dropdown.querySelector('.dropdown-icon');
+            const selectedText = dropdown.querySelector('.selected-text');
+
+            let hideTimer = null;
+
+            // Toggle dropdown
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.payment-dropdown').forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.querySelector('.dropdown-menu').classList.add('hidden');
+                        otherDropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+                        hideAllSubMenus(otherDropdown);
+                    }
+                });
+
+                const isHidden = menu.classList.contains('hidden');
+                if (isHidden) {
+                    menu.classList.remove('hidden');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    menu.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    hideAllSubMenus(dropdown);
+                }
+            });
+
+            // Handle dropdown items
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                const mainButton = item.querySelector('button[data-value]');
+                const submenu = item.querySelector('.submenu');
+
+                // Hover for submenu
+                item.addEventListener('mouseenter', function () {
+                    clearTimeout(hideTimer);
+                    hideAllSubMenus(dropdown);
+                    if (submenu) {
+                        submenu.classList.remove('hidden');
+                    }
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    hideTimer = setTimeout(() => {
+                        if (submenu) {
+                            submenu.classList.add('hidden');
+                        }
+                    }, 200);
+                });
+
+                // Main option selection
+                mainButton.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    selectedText.textContent = value;
+                    menu.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                    hideAllSubMenus(dropdown);
+                    updateActiveState(dropdown, this);
+                });
+
+                // Submenu option selection
+                if (submenu) {
+                    submenu.addEventListener('mouseenter', function () {
+                        clearTimeout(hideTimer);
+                    });
+
+                    submenu.addEventListener('mouseleave', function () {
+                        this.classList.add('hidden');
+                    });
+
+                    submenu.querySelectorAll('button[data-value]').forEach(subButton => {
+                        subButton.addEventListener('click', function () {
+                            const value = this.getAttribute('data-value');
+                            selectedText.textContent = value;
+                            menu.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
+                            hideAllSubMenus(dropdown);
+                        });
+                    });
+                }
+            });
+
+            function hideAllSubMenus(dropdownElement) {
+                dropdownElement.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.classList.add('hidden');
+                });
+            }
+
+            function updateActiveState(dropdownElement, selectedButton) {
+                // Reset all buttons
+                dropdownElement.querySelectorAll('.dropdown-item > button').forEach(btn => {
+                    btn.className = "w-full px-4 py-3 text-left text-gray-700 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 flex items-center justify-between border-b border-gray-100";
+                    const svg = btn.querySelector('svg');
+                    if (svg) svg.className = "w-4 h-4 text-gray-400";
+                });
+
+                // Set active state
+                selectedButton.className = "w-full px-4 py-3 text-left text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600 flex items-center justify-between border-b border-gray-100";
+                const svg = selectedButton.querySelector('svg');
+                if (svg) svg.className = "w-4 h-4 text-white";
+            }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+                dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+                dropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+            });
+        });
+    });
+
+
+    // Add this inside your DOMContentLoaded event listener, after the payment dropdown code
+
+    // Initialize all simple dropdowns
+    document.querySelectorAll('.simple-dropdown').forEach(dropdown => {
+        const button = dropdown.querySelector('.simple-dropdown-button');
+        const menu = dropdown.querySelector('.simple-dropdown-menu');
+        const icon = dropdown.querySelector('.simple-dropdown-icon');
+        const selectedText = dropdown.querySelector('.simple-selected-text');
+
+        // Toggle dropdown
+        button.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            // Close all other simple dropdowns
+            document.querySelectorAll('.simple-dropdown').forEach(otherDropdown => {
+                if (otherDropdown !== dropdown) {
+                    otherDropdown.querySelector('.simple-dropdown-menu').classList.add('hidden');
+                    otherDropdown.querySelector('.simple-dropdown-icon').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                menu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Handle option selection
+        dropdown.querySelectorAll('.simple-dropdown-option').forEach(option => {
+            option.addEventListener('click', function (e) {
+                e.preventDefault();
+                const value = this.getAttribute('data-value');
+                selectedText.textContent = value;
+                menu.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            });
+        });
+    });
+
+    // Update the existing click outside listener to include simple dropdowns
+    document.addEventListener('click', function () {
+        // Close payment dropdowns
+        document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+            dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+            dropdown.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+        });
+
+        // Close simple dropdowns
+        document.querySelectorAll('.simple-dropdown').forEach(dropdown => {
+            dropdown.querySelector('.simple-dropdown-menu').classList.add('hidden');
+            dropdown.querySelector('.simple-dropdown-icon').style.transform = 'rotate(0deg)';
+        });
+    });
+</script>
 
 {% endblock %}
