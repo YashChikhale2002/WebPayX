@@ -2,76 +2,427 @@
 
 {% block content %}
 
-    <div class="card h-full rounded-lg border-0">
-        <div class="card-body p-10">
-            <form action="#">
-                <div class="grid md:grid-cols-2 gap-x-5">
-                    <div class="mb-5">
-                        <label for="name" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Full Name <span class="text-danger-600">*</span></label>
-                        <input type="text" class="form-control rounded-lg" id="name" placeholder="Enter Full Name">
-                    </div>
-                    <div class="mb-5">
-                        <label for="email" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Email <span class="text-danger-600">*</span></label>
-                        <input type="email" class="form-control rounded-lg" id="email" placeholder="Enter email address">
-                    </div>
-                    <div class="mb-5">
-                        <label for="number" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Phone Number</label>
-                        <input type="email" class="form-control rounded-lg" id="number" placeholder="Enter phone number">
-                    </div>
-                    <div class="mb-5">
-                        <label for="Website" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white"> Website</label>
-                        <input type="url" class="form-control rounded-lg" id="Website" placeholder="Website URL">
-                    </div>
-                    <div class="mb-5">
-                        <label for="country" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">Country <span class="text-danger-600">*</span> </label>
-                        <select class="form-control rounded-lg form-select" id="country">
-                            <option selected disabled>Select Country</option>
-                            <option>USA</option>
-                            <option>Bangladesh</option>
-                            <option>Pakistan</option>
-                            <option>India</option>
-                            <option>Canada</option>
-                        </select>
-                    </div>
-                    <div class="mb-5">
-                        <label for="city" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">City <span class="text-danger-600">*</span> </label>
-                        <select class="form-control rounded-lg form-select" id="city">
-                            <option selected disabled>Select City</option>
-                            <option>Washington</option>
-                            <option>Dhaka</option>
-                            <option>Lahor</option>
-                            <option>Panjab</option>
-                        </select>
-                    </div>
-                    <div class="mb-5">
-                        <label for="state" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white">State <span class="text-danger-600">*</span> </label>
-                        <select class="form-control rounded-lg form-select" id="state">
-                            <option selected disabled>Select State</option>
-                            <option>Washington</option>
-                            <option>Dhaka</option>
-                            <option>Lahor</option>
-                            <option>Panjab</option>
-                        </select>
-                    </div>
-                    <div class="mb-5">
-                        <label for="zip" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white"> Zip Code <span class="text-danger-600">*</span></label>
-                        <input type="text" class="form-control rounded-lg" id="zip" placeholder="Zip Code">
-                    </div>
-                    <div class="mb-5 col-span-2">
-                        <label for="address" class="text-sm font-semibold mb-2 block text-neutral-900 dark:text-white"> Address* <span class="text-danger-600">*</span></label>
-                        <input type="text" class="form-control rounded-lg" id="address" placeholder="Enter Your Address">
-                    </div>
-                    <div class="col-span-2 flex items-center justify-center gap-3 mt-6">
-                        <button type="reset" class="border border-danger-600 hover:bg-danger-200 text-danger-600 text-base px-10 py-[11px] rounded-lg">
-                            Reset
-                        </button>
-                        <button type="submit" class="btn btn-primary border border-primary-600 text-base px-6 py-3 !rounded-lg">
-                            Save Change
-                        </button>
-                    </div>
+<style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+<div class="card border-0 over mb-2">
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
+        <div class="flex-shrink-0">
+            <label for="fromDate" class="form-label">From Date</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label for="toDate" class="form-label">To Date</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" />
+        </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Transaction Type</label>
+            <div>
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Credit
+                                Card</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Credit
+                                Card</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Net
+                                Banking</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">UPI</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Wallet</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">QR</a>
+                        </li>
+                    </ul>
                 </div>
-            </form>
+            </div>
+        </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Status</label>
+            <div>
+                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="statusDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Success</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Failed</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Refunded</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Chargeback</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-shrink-0">
+            <label class="form-label">Select the Retail</label>
+            <div>
+                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
+                    Select
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="kycDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Select
+                                All Retailer</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">RT
+                                - Rohit Kumar</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">RT
+                                - Akshay Khanna</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">RT
+                                - Amruta Devi</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">RT
+                                - Rohit Patil</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-shrink-0 gap-2">
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
         </div>
     </div>
+</div>
+
+<div class="grid grid-cols-12">
+    <div class="col-span-12">
+        <div class="border border-gray-300 rounded">
+            <div class="card-body border border-gray-300 rounded bg-white">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table mb-0 bg-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Sr. No
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Date & Time
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Agent ID
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Contact Number
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Wallet Balance
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Transaction Mode
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Transaction ID
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Trxn. Amount
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Platform Charges
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Closing Balance
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Status
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Device
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Remark
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Re-check
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Edit
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Invoice
+                                        </label>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 01 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 23-03-2025 : 10:39 AM </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Raju Kumar </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 1234567890 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Rs. 75,000 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> UPI / Credit Card </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 47723923748326 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Rs. 25,000 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Rs. 25 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Rs. 1,00,025 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Success </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Chrome - System </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> Refund initiated </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Check Now
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Edit Now
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            View Now
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

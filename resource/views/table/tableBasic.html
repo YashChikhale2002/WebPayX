@@ -2,1377 +2,411 @@
 {% extends 'layout/layout.html' %}
 {% block content %}
 
+<style>
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
 <div class="card border-0 over mb-2">
-    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto overflow-hidden">
-
+    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto hide-scrollbar overflow-hidden">
         <div class="flex-shrink-0">
             <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" id="fromDate" name="fromDate" class="form-control">
+            <input type="date" id="fromDate" name="fromDate" class="form-control" />
         </div>
 
         <div class="flex-shrink-0">
             <label for="toDate" class="form-label">To Date</label>
-            <input type="date" id="toDate" name="toDate" class="form-control ">
+            <input type="date" id="toDate" name="toDate" class="form-control" />
         </div>
 
         <div class="flex-shrink-0">
-            <label class="form-label">Select Distributor</label>
+            <label class="form-label">Complaint Type</label>
             <div>
-                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
+                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
                     Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-                <div id="distributorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                <div id="distributorDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 1</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 2</a></li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Collection
+                                Services - PG</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">CC
+                                Bill Payment</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bank
+                                Settlement</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Money
+                                Transfer</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mobile
+                                & DTH Recharge</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Other</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="flex-shrink-0">
-            <label class="form-label">Select Status</label>
+            <label class="form-label">Complaint Status</label>
             <div>
-                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
+                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
                     Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-                <div id="statusDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                <div id="statusDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a></li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">On
+                                Hold</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Junk</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="flex-shrink-0">
-            <label class="form-label">KYC Status</label>
+            <label class="form-label">Select Department</label>
             <div>
-                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
+                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom"
+                    class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
+                    type="button">
                     Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
                     </svg>
                 </button>
-                <div id="kycDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
+                <div id="kycDropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex flex-shrink-0 gap-2">
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Search</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Bulk Mapping</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Create Agent</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-Excel</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-PDF</button>
-        </div>
-
-    </div>
-</div>
-<div class="grid grid-cols-12">
-    <div class="col-span-12">
-        <div class="card border-0">
-            <div class="card-header flex flex-wrap items-center justify-between gap-3">
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2">
-                        <span>Show</span>
-                        <select class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white">
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                    </div>
-                    <div class="icon-field relative">
-                        <input type="text" name="#0"
-                            class="bg-white dark:bg-dark-2 ps-10 border-neutral-200 dark:border-neutral-500 rounded-lg w-auto"
-                            placeholder="Search">
-                        <span class="icon absolute top-1/2 left-0 text-lg flex">
-                            <iconify-icon icon="ion:search-outline"></iconify-icon>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white border-neutral-200 dark:border-neutral-500">
-                        <option>Satatus</option>
-                        <option>Paid</option>
-                        <option>Pending</option>
-                    </select>
-                    <a href="{{ url_for('invoice.invoiceAdd') }}"
-                        class="btn btn-sm text-white bg-primary-600 hover:bg-primary-700 flex items-center gap-2"><i
-                            class="ri-add-line"></i> Create Invoice</a>
-                </div>
-                
-            </div>
-            <div class="card-body">
-                <div class="table-responsive scroll-sm">
-                    <table class="table bordered-table mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="checkAll">
-                                            Sr. No
-                                        </label>
-                                    </div>
-                                </th>
-                                <th scope="col">Created Date</th>
-                                <th scope="col">Agent ID</th>
-                                <th scope="col">DS Name</th>
-                                <th scope="col">Wallet Balance</th>
-                                <th scope="col">Hold Amount</th>
-                                <th scope="col">Earning</th>
-                                <th scope="col">Balance Amt</th>
-                                <th scope="col">State Name</th>
-                                <th scope="col"> District Name</th>
-                                <th scope="col"> KYC Status</th>
-                                <th scope="col"> Commission Plan</th>
-                                <th scope="col"> Actions</th>
-                                <th scope="col"> Fund Dr. - Cr</th>
-                                <th scope="col">Permission</th>
-                                <th scope="col">View Profile</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="check1">
-                                            0123
-                                        </label>
-                                    </div>
-                                </td>
-                                <td><a href="javascript:void(0)" class="text-primary-600">25 Jan 2025 </a></td>
-
-                                <td>#696589</td>
-                                <td>Abhishek Parate</td>
-                                <td> 1000.00
-                                </td>
-
-                                <td> 200.00
-                                </td>
-
-                                <td>10000.00</td>
-                                <td>200</td>
-                                <td>Maharastra</td>
-                                <td> Nagpur
-                                </td>
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="dev"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dev"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
-                                                    </a>
-                                                </li>
-                                             
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-                                <td> <span
-                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
-                                        Department</span> </td>
-
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="outlineActionPill"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="outlineActionPill"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
-                                                    
-                                                    </a>
-                                                </li>
-                                            
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-
-                                <td> <span
-                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
-                                </td>
-                                <td><button type="button"
-                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full  px-6 py-1.5">Primary</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
-                    <span>Showing 1 to 10 of 12 entries</span>
-                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
-                                    class="text-xl"></iconify-icon></a>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Admin</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">1</a>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Support
+                                Team</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">2</a>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Legal
+                                Department</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right"
-                                    class="text-xl"></iconify-icon> </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-                 
-            </div>
-            
-        </div>
-        
-    </div>
-    
-</div>
-
-
-
-<!-- 01 Top-up Request -->
-<div class="card border-0 over mb-2 mt-6">
-    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto overflow-hidden">
-
-        <div class="flex-shrink-0">
-            <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" id="fromDate" name="fromDate" class="form-control">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label for="toDate" class="form-label">To Date</label>
-            <input type="date" id="toDate" name="toDate" class="form-control ">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Select Distributor</label>
-            <div>
-                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="distributorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 1</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        
-        <div class="flex flex-shrink-0 gap-2">
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-Excel</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-PDF</button>
-        </div>
-
-    </div>
-</div>
-<div class="grid grid-cols-12">
-    <div class="col-span-12">
-        <div class="card border-0">
-            <div class="card-header flex flex-wrap items-center justify-between gap-3">
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2">
-                        <span>Show</span>
-                        <select class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white">
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                    </div>
-                    <div class="icon-field relative">
-                        <input type="text" name="#0"
-                            class="bg-white dark:bg-dark-2 ps-10 border-neutral-200 dark:border-neutral-500 rounded-lg w-auto"
-                            placeholder="Search">
-                        <span class="icon absolute top-1/2 left-0 text-lg flex">
-                            <iconify-icon icon="ion:search-outline"></iconify-icon>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white border-neutral-200 dark:border-neutral-500">
-                        <option>Satatus</option>
-                        <option>Paid</option>
-                        <option>Pending</option>
-                    </select>
-                    <a href="{{ url_for('invoice.invoiceAdd') }}"
-                        class="btn btn-sm text-white bg-primary-600 hover:bg-primary-700 flex items-center gap-2"><i
-                            class="ri-add-line"></i> Create Invoice</a>
-                </div>
-                
-            </div>
-            <div class="card-body">
-                <div class="table-responsive scroll-sm">
-                    <table class="table bordered-table mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="checkAll">
-                                            Sr. No
-                                        </label>
-                                    </div>
-                                </th>
-                                <th scope="col">Request Date</th>
-                                <th scope="col">User Type</th>
-                                <th scope="col">Member ID</th>
-                                <th scope="col">Member Name</th>
-                                <th scope="col">Trx. Mode</th>
-                                <th scope="col">Service Nam</th>
-                                <th scope="col">Trx. ID</th>
-                                <th scope="col">Trx. Amount</th>
-                                <th scope="col">Agent A/c</th>
-                                <th scope="col">Admin A/c</th>
-                                <th scope="col">Trx. Status</th>
-                                <th scope="col">Req. Remark</th>
-                                <th scope="col">Permission</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="check1">
-                                            0123
-                                        </label>
-                                    </div>
-                                </td>
-                                <td><a href="javascript:void(0)" class="text-primary-600">25 Jan 2025 </a></td>
-
-                                <td>#696589</td>
-                                <td>Abhishek Parate</td>
-                                <td> 1000.00
-                                </td>
-
-                                <td> 200.00
-                                </td>
-
-                                <td>10000.00</td>
-                                <td>200</td>
-                                <td>Maharastra</td>
-                                <td> Nagpur
-                                </td>
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="dev"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dev"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
-                                                    </a>
-                                                </li>
-                                             
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-                                <td> <span
-                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
-                                        Department</span> </td>
-
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="outlineActionPill"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="outlineActionPill"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
-                                                    
-                                                    </a>
-                                                </li>
-                                            
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-
-                                <td> <span
-                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
-                                </td>
-                                <td><button type="button"
-                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full  px-6 py-1.5">Primary</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
-                    <span>Showing 1 to 10 of 12 entries</span>
-                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
-                                    class="text-xl"></iconify-icon></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right"
-                                    class="text-xl"></iconify-icon> </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-                 
-            </div>
-            
-        </div>
-        
-    </div>
-    
-</div>
-
-
-
-<!-- 02 Top-up Request Report -->
-<div class="card border-0 over mb-2 mt-6">
-    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto overflow-hidden">
-
-        <div class="flex-shrink-0">
-            <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" id="fromDate" name="fromDate" class="form-control">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label for="toDate" class="form-label">To Date</label>
-            <input type="date" id="toDate" name="toDate" class="form-control ">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">User Type</label>
-            <div>
-                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="distributorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 1</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Stats Type</label>
-            <div>
-                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="statusDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Approved By</label>
-            <div>
-                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="kycDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex flex-shrink-0 gap-2">
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Search</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-Excel</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-PDF</button>
-        </div>
-
-    </div>
-</div>
-<div class="grid grid-cols-12">
-    <div class="col-span-12">
-        <div class="card border-0">
-            <div class="card-header flex flex-wrap items-center justify-between gap-3">
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2">
-                        <span>Show</span>
-                        <select class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white">
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                    </div>
-                    <div class="icon-field relative">
-                        <input type="text" name="#0"
-                            class="bg-white dark:bg-dark-2 ps-10 border-neutral-200 dark:border-neutral-500 rounded-lg w-auto"
-                            placeholder="Search">
-                        <span class="icon absolute top-1/2 left-0 text-lg flex">
-                            <iconify-icon icon="ion:search-outline"></iconify-icon>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white border-neutral-200 dark:border-neutral-500">
-                        <option>Satatus</option>
-                        <option>Paid</option>
-                        <option>Pending</option>
-                    </select>
-                    <a href="{{ url_for('invoice.invoiceAdd') }}"
-                        class="btn btn-sm text-white bg-primary-600 hover:bg-primary-700 flex items-center gap-2"><i
-                            class="ri-add-line"></i> Create Invoice</a>
-                </div>
-                
-            </div>
-            <div class="card-body">
-                <div class="table-responsive scroll-sm">
-                    <table class="table bordered-table mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="checkAll">
-                                            Sr. No
-                                        </label>
-                                    </div>
-                                </th>
-                                <th scope="col">Request Date</th>
-                                <th scope="col">User Type</th>
-                                <th scope="col">Member ID</th>
-                                <th scope="col">Member Name</th>
-                                <th scope="col">Trx. Mod</th>
-                                <th scope="col">Service Name</th>
-                                <th scope="col">Trx. ID</th>
-                                <th scope="col">Trx. Amount</th>
-                                <th scope="col">Agent A/c</th>
-                                <th scope="col">Admin A/c</th>
-                                <th scope="col">Trx. Status</th>
-                                <th scope="col">Req. Remark</th>
-                                <th scope="col">Approved By</th>
-                                <th scope="col">Approver Remark</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="check1">
-                                            0123
-                                        </label>
-                                    </div>
-                                </td>
-                                <td><a href="javascript:void(0)" class="text-primary-600">25 Jan 2025 </a></td>
-
-                                <td>#696589</td>
-                                <td>Abhishek Parate</td>
-                                <td> 1000.00
-                                </td>
-
-                                <td> 200.00
-                                </td>
-
-                                <td>10000.00</td>
-                                <td>200</td>
-                                <td>Maharastra</td>
-                                <td> Nagpur
-                                </td>
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="dev"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dev"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
-                                                    </a>
-                                                </li>
-                                             
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-                                <td> <span
-                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
-                                        Department</span> </td>
-
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="outlineActionPill"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="outlineActionPill"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
-                                                    
-                                                    </a>
-                                                </li>
-                                            
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-
-                                <td> <span
-                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
-                                </td>
-                                <td><button type="button"
-                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full  px-6 py-1.5">Primary</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
-                    <span>Showing 1 to 10 of 12 entries</span>
-                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
-                                    class="text-xl"></iconify-icon></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right"
-                                    class="text-xl"></iconify-icon> </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-                 
-            </div>
-            
-        </div>
-        
-    </div>
-    
-</div>
-
-
-<!-- 03 Direct Wallet Top-up Report -->
-<div class="card border-0 over mb-2 mt-6">
-    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto overflow-hidden">
-
-        <div class="flex-shrink-0">
-            <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" id="fromDate" name="fromDate" class="form-control">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label for="toDate" class="form-label">To Date</label>
-            <input type="date" id="toDate" name="toDate" class="form-control ">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">User Type</label>
-            <div>
-                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="distributorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 1</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Trasaction Type</label>
-            <div>
-                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="statusDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Action Taker</label>
-            <div>
-                <button data-dropdown-toggle="kycDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="kycDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex flex-shrink-0 gap-2">
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Search</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-Excel</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-PDF</button>
-        </div>
-
-    </div>
-</div>
-<div class="grid grid-cols-12">
-    <div class="col-span-12">
-        <div class="card border-0">
-            <div class="card-header flex flex-wrap items-center justify-between gap-3">
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2">
-                        <span>Show</span>
-                        <select class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white">
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                    </div>
-                    <div class="icon-field relative">
-                        <input type="text" name="#0"
-                            class="bg-white dark:bg-dark-2 ps-10 border-neutral-200 dark:border-neutral-500 rounded-lg w-auto"
-                            placeholder="Search">
-                        <span class="icon absolute top-1/2 left-0 text-lg flex">
-                            <iconify-icon icon="ion:search-outline"></iconify-icon>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white border-neutral-200 dark:border-neutral-500">
-                        <option>Satatus</option>
-                        <option>Paid</option>
-                        <option>Pending</option>
-                    </select>
-                    <a href="{{ url_for('invoice.invoiceAdd') }}"
-                        class="btn btn-sm text-white bg-primary-600 hover:bg-primary-700 flex items-center gap-2"><i
-                            class="ri-add-line"></i> Create Invoice</a>
-                </div>
-                
-            </div>
-            <div class="card-body">
-                <div class="table-responsive scroll-sm">
-                    <table class="table bordered-table mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="checkAll">
-                                            Sr. No
-                                        </label>
-                                    </div>
-                                </th>
-                                <th scope="col">Top-up Date</th>
-                                <th scope="col">User Type</th>
-                                <th scope="col">Member ID</th>
-                                <th scope="col">Member Name</th>
-                                <th scope="col">Trx. Mod</th>
-                                <th scope="col">Service Name</th>
-                                <th scope="col">Trx. ID</th>
-                                <th scope="col">Trx. Amount</th>
-                                <th scope="col">Agent A/c</th>
-                                <th scope="col">Admin A/c</th>
-                                <th scope="col">Trx. Status</th>
-                                <th scope="col">Req. Remark</th>
-                                <th scope="col">Approved By</th>
-                                <th scope="col">Approver Remark</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="check1">
-                                            0123
-                                        </label>
-                                    </div>
-                                </td>
-                                <td><a href="javascript:void(0)" class="text-primary-600">25 Jan 2025 </a></td>
-
-                                <td>#696589</td>
-                                <td>Abhishek Parate</td>
-                                <td> 1000.00
-                                </td>
-
-                                <td> 200.00
-                                </td>
-
-                                <td>10000.00</td>
-                                <td>200</td>
-                                <td>Maharastra</td>
-                                <td> Nagpur
-                                </td>
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="dev"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dev"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
-                                                    </a>
-                                                </li>
-                                             
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-                                <td> <span
-                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
-                                        Department</span> </td>
-
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="outlineActionPill"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
-                                        </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="outlineActionPill"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
-                                                    
-                                                    </a>
-                                                </li>
-                                            
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- Dropdown End -->
-                                </td>
-
-                                <td> <span
-                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
-                                </td>
-                                <td><button type="button"
-                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full  px-6 py-1.5">Primary</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
-                    <span>Showing 1 to 10 of 12 entries</span>
-                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
-                                    class="text-xl"></iconify-icon></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right"
-                                    class="text-xl"></iconify-icon> </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-                 
-            </div>
-            
-        </div>
-        
-    </div>
-    
-</div>
-
-
-<!-- 04 Fund Hold Report -->
-<div class="card border-0 over mb-2 mt-6">
-    <div class="card-header flex items-end gap-4 p-4 overflow-x-auto overflow-hidden">
-
-        <div class="flex-shrink-0">
-            <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" id="fromDate" name="fromDate" class="form-control">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label for="toDate" class="form-label">To Date</label>
-            <input type="date" id="toDate" name="toDate" class="form-control ">
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">User Type</label>
-            <div>
-                <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="distributorDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 1</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor 2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex-shrink-0">
-            <label class="form-label">Amount Holder</label>
-            <div>
-                <button data-dropdown-toggle="statusDropdown" data-dropdown-placement="bottom" class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-2 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800" type="button">
-                    Select
-                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                    </svg>
-                </button>
-                <div id="statusDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a></li>
-                        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="flex flex-shrink-0 gap-2">
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Search</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-Excel</button>
-            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">Export-PDF</button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Search
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-Excel
+            </button>
+            <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                Export-PDF
+            </button>
         </div>
-
     </div>
 </div>
+
 <div class="grid grid-cols-12">
     <div class="col-span-12">
-        <div class="card border-0">
-            <div class="card-header flex flex-wrap items-center justify-between gap-3">
-                <div class="flex flex-wrap items-center gap-3">
-                    <div class="flex items-center gap-2">
-                        <span>Show</span>
-                        <select class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white">
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                    </div>
-                    <div class="icon-field relative">
-                        <input type="text" name="#0"
-                            class="bg-white dark:bg-dark-2 ps-10 border-neutral-200 dark:border-neutral-500 rounded-lg w-auto"
-                            placeholder="Search">
-                        <span class="icon absolute top-1/2 left-0 text-lg flex">
-                            <iconify-icon icon="ion:search-outline"></iconify-icon>
-                        </span>
-                    </div>
+        <div class="card-header flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-2">
+                    <h6>Create Retailer</h6>
                 </div>
-                <div class="flex flex-wrap items-center gap-3">
-                    <select
-                        class="form-select form-select-sm w-auto dark:bg-dark-2 dark:text-white border-neutral-200 dark:border-neutral-500">
-                        <option>Satatus</option>
-                        <option>Paid</option>
-                        <option>Pending</option>
-                    </select>
-                    <a href="{{ url_for('invoice.invoiceAdd') }}"
-                        class="btn btn-sm text-white bg-primary-600 hover:bg-primary-700 flex items-center gap-2"><i
-                            class="ri-add-line"></i> Create Invoice</a>
-                </div>
-                
             </div>
-            <div class="card-body">
-                <div class="table-responsive scroll-sm">
-                    <table class="table bordered-table mb-0">
+        </div>
+        <div class="border border-gray-300 rounded">
+            <div class="card-body border border-gray-300 rounded bg-white">
+                <div class="table-responsive scroll-sm overflow-x-auto hide-scrollbar">
+                    <table class="table mb-0 bg-white">
                         <thead>
                             <tr>
                                 <th scope="col">
-                                    <div class="form-check style-check flex items-center gap-2">
-
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
                                         <label class="form-check-label" for="checkAll">
                                             Sr. No
                                         </label>
                                     </div>
                                 </th>
-                                <th scope="col">Hold Date</th>
-                                <th scope="col">Amount Holder</th>
-                                <th scope="col">User Type</th>
-                                <th scope="col">Member ID</th>
-                                <th scope="col">Member Name</th>
-                                <th scope="col">Wallet Balance</th>
-                                <th scope="col">Hold Amount</th>
-                                <th scope="col">Closing Bal</th>
-                                <th scope="col">Holder Remark</th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Req. Date
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Member ID
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Member Name
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Service Category
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Transaction Type
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Transaction IDt
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Transaction Date
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Trx Amount
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Disposition
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Complaint Status
+                                        </button>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Agent Remark
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Escalation Deprt
+                                        </button>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
+                                            Updator Remark
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Update
+                                        </button>
+                                    </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="form-check style-check flex items-center gap-2">
-
-                                        <label class="form-check-label" for="check1">
-                                            0123
-                                        </label>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
                                     </div>
                                 </td>
-                                <td><a href="javascript:void(0)" class="text-primary-600">25 Jan 2025 </a></td>
-
-                                <td>#696589</td>
-                                <td>Abhishek Parate</td>
-                                <td> 1000.00
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
                                 </td>
-
-                                <td> 200.00
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
                                 </td>
-
-                                <td>10000.00</td>
-                                <td>200</td>
-                                <td>Maharastra</td>
-                                <td> Nagpur
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
                                 </td>
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="dev"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                                    <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            On Hold
                                         </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="dev"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approved</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Rejected
-                                                    </a>
-                                                </li>
-                                             
-
-                                            </ul>
-                                        </div>
                                     </div>
-                                    <!-- Dropdown End -->
                                 </td>
-                                <td> <span
-                                        class="bg-warning-100 dark:bg-warning-600/25 text-warning-600 dark:text-warning-400 px-6 py-1.5 rounded-full font-medium text-sm">Legal
-                                        Department</span> </td>
-
-                                <td> <!-- Dropdown Start -->
-                                    <div class="">
-                                        <button data-dropdown-toggle="outlineActionPill"
-                                            data-dropdown-placement="bottom"
-                                            class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-6 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
-                                            type="button">
-                                            Select
-                                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                            </svg>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
+                                </td>
+                               <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Support Team
                                         </button>
-                                        <!-- Dropdown menu -->
-                                        <div id="outlineActionPill"
-                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-2xl w-44 dark:bg-gray-700">
-                                            <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0)"
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deactive
-                                                    
-                                                    </a>
-                                                </li>
-                                            
-                                            </ul>
-                                        </div>
                                     </div>
-                                    <!-- Dropdown End -->
                                 </td>
-
-                                <td> <span
-                                        class="bg-danger-100 dark:bg-danger-600/25 text-danger-600 dark:text-danger-400 px-6 py-1.5 rounded-full font-medium text-sm">No</span>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                    </div>
                                 </td>
-                                <td><button type="button"
-                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-full  px-6 py-1.5">Primary</button>
+                                <td>
+                                    <div class="form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <button type="button"
+                                            class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
+                                            Update
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
-
-                <div class="flex flex-wrap items-center justify-between gap-2 mt-6">
-                    <span>Showing 1 to 10 of 12 entries</span>
-                    <ul class="pagination flex flex-wrap items-center gap-2 justify-center">
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"><iconify-icon icon="ep:d-arrow-left"
-                                    class="text-xl"></iconify-icon></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-600 text-white font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link bg-primary-50 dark:bg-primary-600/25 text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8"
-                                href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link text-secondary-light font-medium rounded border-0 px-2.5 py-2.5 flex items-center justify-center h-8 w-8 bg-white dark:bg-neutral-700"
-                                href="javascript:void(0)"> <iconify-icon icon="ep:d-arrow-right"
-                                    class="text-xl"></iconify-icon> </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-                 
             </div>
-            
         </div>
-        
     </div>
-    
 </div>
 {% endblock %}
