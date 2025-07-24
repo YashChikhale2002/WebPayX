@@ -24,7 +24,7 @@
         </div>
 
         <div class="flex-shrink-0">
-            <label class="form-label">Select Distributor</label>
+            <label class="form-label">Select MDS</label>
             <div>
                 <button data-dropdown-toggle="distributorDropdown" data-dropdown-placement="bottom"
                     class="text-primary-600 focus:bg-primary-600 hover:bg-primary-700 border border-primary-600 hover:text-white focus:text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-1.5 text-center inline-flex items-center dark:text-primary-400 dark:hover:text-white dark:focus:text-white dark:focus:ring-primary-800"
@@ -41,13 +41,13 @@
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor
-                                1</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">MDS
+                                00339483 - Virat Kohil</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Distributor
-                                2</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">MDS
+                                00735939 - Arjeet Singh</a>
                         </li>
                     </ul>
                 </div>
@@ -72,11 +72,13 @@
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Resolved</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Active
+                                Member</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Escalated</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">In-Active
+                                Member</a>
                         </li>
                     </ul>
                 </div>
@@ -101,11 +103,11 @@
                     <ul class="py-2 text-base text-gray-700 dark:text-gray-200">
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending</a>
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verified</a>
                         </li>
                     </ul>
                 </div>
@@ -120,7 +122,7 @@
                 Bulk Mapping
             </button>
             <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
-                Create Agent
+                Create DS
             </button>
             <button type="button" class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-5 py-[11px]">
                 Export-Excel
@@ -167,7 +169,7 @@
                                     <div
                                         class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
                                         <label class="form-check-label" for="checkAll">
-                                            Agent ID
+                                            WL ID
                                         </label>
                                     </div>
                                 </th>
@@ -175,7 +177,7 @@
                                     <div
                                         class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
                                         <label class="form-check-label" for="checkAll">
-                                            Agent Name
+                                            WL Name
                                         </label>
                                     </div>
                                 </th>
@@ -183,7 +185,7 @@
                                     <div
                                         class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
                                         <label class="form-check-label" for="checkAll">
-                                            DS Name
+                                            Admin Name
                                         </label>
                                     </div>
                                 </th>
@@ -271,6 +273,14 @@
                                     <div
                                         class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
                                         <label class="form-check-label" for="checkAll">
+                                            Member Count
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div
+                                        class="border border-gray-300 bg-white rounded form-check style-check flex items-center gap-2 py-2 px-4">
+                                        <label class="form-check-label" for="checkAll">
                                             Permission
                                         </label>
                                     </div>
@@ -290,103 +300,109 @@
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
-                                        <label class="form-check-label" for="check1"> 0123 </label>
+                                        <label class="form-check-label" for="check1"> </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div
+                                        class="form-check style-check flex items-center gap-2 border border-gray-300 rounded form-check style-check py-2 px-4">
+                                        <label class="form-check-label" for="check1"> </label>
                                     </div>
                                 </td>
                             </tr>
@@ -423,9 +439,9 @@
                                 </div>
                                 <div class="md:col-span-6 col-span-12">
                                     <label class="form-label">Email Address</label>
-                                    <input type="text" name="#0" class="form-control" " required>
-                </div>
-                <div class=" md:col-span-6 col-span-12">
+                                    <input type="text" name="#0" class="form-control" required>
+                                </div>
+                                <div class=" md:col-span-6 col-span-12">
                                     <label class="form-label">D.O.B</label>
                                     <input type="text" name="#0" class="form-control" required />
                                 </div>
@@ -586,11 +602,15 @@
     </div>
 </div>
 
+
+
 <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
     <div class="grid grid-cols-6">
         <div class="col-span-6">
-            <div class="card border-0 overflow-hidden">
-                <div class="card-header">
+            <div class="grid grid-cols-12 gap-5">
+                <div class="col-span-12">
+                    <div class="card border-0">
+                        <div class="card-header">
                     <h6 class="card-title mb-0 text-lg">User KYC Updates</h6>
                 </div>
                 <div class="card-body">
@@ -752,7 +772,7 @@
                                 <td class="border border-neutral-200 dark:border-neutral-600 p-3">
                                     <div class="form-check style-check flex items-center">
                                         <label class="ms-2 form-check-label">
-                                            Other Document
+                                            Agreement Copy
                                         </label>
                                     </div>
                                 </td>
@@ -775,6 +795,88 @@
                                     </button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Company Documents
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg--700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Partner Document
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg--700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3">
+                                    <div class="form-check style-check flex items-center">
+                                        <label class="ms-2 form-check-label">
+                                            Other Documents
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        View File
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-3 py-1">
+                                        Upload
+                                    </button>
+                                </td>
+                                <td class="border border-neutral-200 dark:border-neutral-600 p-3 text-center">
+                                    <button type="button"
+                                        class="btn bg-success-600 hover:bg--700 text-white rounded-lg px-3 py-1">
+                                        Approved
+                                    </button>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <div class="md:col-span-6 col-span-12 flex justify-end items-end ">
@@ -785,12 +887,15 @@
                         </button>
                     </div>
                 </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="grid grid-cols-6">
-        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg mt-2">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
+        <div class="flex flex-col gap-6">
+            <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+             <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
                 <h6 class="card-title mb-0 text-base font-semibold">
                     User Agent ID Update - BBPS - Bill Avenue
                 </h6>
@@ -824,9 +929,10 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg mt-2">
-            <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
+            </div>
+
+            <div class="card border border-neutral-200 dark:border-neutral-600 rounded-lg">
+             <div class="card-header border-b border-neutral-200 dark:border-neutral-600 p-4">
                 <h6 class="card-title mb-0 text-base font-semibold">
                     User Platform Accessibilities
                 </h6>
@@ -882,9 +988,12 @@
                     </div>
                 </form>
             </div>
+            </div>
+
         </div>
     </div>
 </div>
+
 
 <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
     <div class="grid grid-cols-6">
