@@ -24,6 +24,8 @@ def imageGenerator():
         subtitle='Image Generator',
     )
 
+
+
 @aiapplication_bp.route('/text-generator')
 def textGenerator():
     return render_template('aiapplication/textGenerator.html',
